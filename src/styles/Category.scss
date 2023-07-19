@@ -1,0 +1,28 @@
+@import "colors" ;
+
+.category {
+  margin-top: 80px;
+
+  &-wrapper {
+    padding-top: 24px;
+  }
+
+  &-title {
+    font-family: "Mont", sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    color: $primary-color;
+  }
+
+  &-text {
+    font-family: "Mont", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 21px;
+    color: $gray-secondary;
+    padding-top: 4px;
+  }
+}

@@ -1,0 +1,42 @@
+@import "colors";
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 0 0 $elements-color;
+  padding: 0 24px;
+  height: 64px;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+
+  &-img__wrapper {
+    display: flex;
+    gap: 24px;
+  }
+
+  &-img {
+    padding-left: 24px;
+    box-shadow: -1px 0 0 0 $elements-color;
+    height: 64px;
+  }
+}
+
+.list {
+  display: flex;
+  gap: 64px;
+
+  &-item {
+    font-family: "Mont", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: $gray-secondary;
+    line-height: 11px;
+    letter-spacing: 0.48px;
+    text-transform: uppercase;
+  }
+}

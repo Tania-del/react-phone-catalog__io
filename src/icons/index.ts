@@ -1,0 +1,13 @@
+export { default as Dots } from './Dots';
+export { default as ArrowDown } from './ArrowDown';
+export { default as ArrowLeft } from './ArrowLeft';
+export { default as ArrowRight } from './ArrowRight';
+export { default as ArrowUp } from './ArrowUp';
+export { default as Close } from './Close';
+export { default as Heart } from './Heart';
+export { default as Home } from './Home';
+export { default as Logo } from './Logo';
+export { default as Minus } from './Minus';
+export { default as Plus } from './Plus';
+export { default as Search } from './Search';
+export { default as ShoppingBag } from './ShoppingBag';
