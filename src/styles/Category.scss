@@ -3,8 +3,10 @@
 .category {
   margin-top: 80px;
 
-  &-wrapper {
-    padding-top: 24px;
+  &-img__wrapper {
+display: flex;
+gap: 16px;
+margin-top: 24px;
   }
 
   &-title {
@@ -14,7 +16,13 @@
     font-weight: 600;
     line-height: normal;
     color: $primary-color;
+    padding-top: 24px;
+
+    &__first {
+      padding-top: 15px;
+    }
   }
+
 
   &-text {
     font-family: "Mont", sans-serif;
@@ -25,4 +33,7 @@
     color: $gray-secondary;
     padding-top: 4px;
   }
+
 }
+
+

@@ -1,7 +1,11 @@
 {
   "extends": "@mate-academy/students-ts-config",
   "include": [
-    "src",
-    "src/images"
-  ]
+    "src"
+  ],
+
+   "compilerOptions": {
+  },
+  "exclude": ["node_modules", "webpack.config.js"]
 }
+

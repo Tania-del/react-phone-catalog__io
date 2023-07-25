@@ -1,0 +1,36 @@
+@import "colors";
+
+.button {
+  width: 176px;
+height: 40px;
+text-align: center;
+padding: 9px 48px 9px 47px;
+background-color: $primary-color;
+border: none;
+
+&-title {
+  text-align: center;
+font-family: "Mont", sans-serif;
+font-size: 14px;
+font-style: normal;
+font-weight: 600;
+line-height: 21px;
+color: $white;
+}
+
+&-favourites {
+  width: 40px;
+height: 40px;
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: $white;
+border: 1px solid $gray-icons;
+}
+}
+
+.buttons-wrapper {
+  padding: 16px 0 24px;
+  display: flex;
+  justify-content: space-between;
+}

@@ -9,7 +9,7 @@
   &-img {
     max-width: 208px;
     max-height: 208px;
-    padding: 32px 32px 24px;
+    margin: 32px 24px 24px;
   }
 
   &-title {
@@ -53,6 +53,12 @@
     color: $gray-secondary;
     text-decoration: line-through;
   }
+
+  &-description {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 16px;
+  }
 }
 
 .underline {
@@ -60,4 +66,35 @@
   width: 224px;
   border-bottom: 1px solid $elements-color;
   padding-top: 8px;
+}
+
+.description-title {
+  font-family: "Mont", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  color: $gray-secondary;
+  text-align: start;
+  padding-bottom: 8px;
+}
+
+.description-title:last-child {
+  padding-bottom: 0;
+}
+
+.description-text {
+  text-align: right;
+font-family: "Mont", sans-serif;
+font-size: 12px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+color: $primary-color;
+padding-bottom: 8px;
+
+}
+
+.description-text:last-child {
+padding-bottom: 0;
 }

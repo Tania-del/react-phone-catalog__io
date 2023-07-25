@@ -1,0 +1,19 @@
+[
+  {
+    "category": "phones",
+    "quantity": "models",
+    "image": "src/images/Phones.jpg"
+  },
+
+  {
+    "category": "phones",
+    "quantity": "models",
+    "image": "src/images/Tablets.jpg"
+  },
+
+  {
+    "category": "phones",
+    "quantity": "models",
+    "image": "src/images/Accessories.jpg"
+  }
+]

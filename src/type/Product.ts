@@ -1,15 +1,15 @@
 export interface Product {
-  id: string;
   category: string;
   phoneId: string;
   itemId: string;
-  name: string;
   fullPrice: number;
+  id: string;
+  image: string;
+  name: string;
   price: number;
   screen: string;
-  capacity: string;
+  capacity?: string;
+  ram?: string;
   color: string;
-  ram: string;
   year: number;
-  image: string;
 }

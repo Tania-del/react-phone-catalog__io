@@ -43,3 +43,15 @@
   align-items: center;
   padding: 0;
 }
+
+.arrow-image {
+  fill: $gray-icons;
+}
+
+.arrow-image:hover {
+  fill: $primary-color;
+}
+
+.arrow-btn:hover {
+  border: 1px solid $gray-icons;
+}

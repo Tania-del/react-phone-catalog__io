@@ -10,7 +10,6 @@ const SvgArrowRight = (props: SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <path
-      fill="#313237"
       fillRule="evenodd"
       // eslint-disable-next-line max-len
       d="M5.529 3.529c.26-.26.682-.26.942 0l4 4c.26.26.26.682 0 .942l-4 4a.667.667 0 1 1-.942-.942L9.057 8 5.53 4.471a.667.667 0 0 1 0-.942Z"

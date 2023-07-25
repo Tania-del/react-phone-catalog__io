@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import '../styles/MobileCard.scss';
 import { Product } from '../type/Product';
-// import ProductImages from '../../public/img/phones';
+import { Button } from './Button';
 
 interface IMobileCard {
   item: Product;
@@ -9,9 +9,12 @@ interface IMobileCard {
 
 export const MobileCard: FC<IMobileCard> = ({ item }) => {
   const {
-    image,
     name,
     price,
+    screen,
+    capacity,
+    ram,
+    image,
     fullPrice,
   } = item;
 
@@ -28,6 +31,19 @@ export const MobileCard: FC<IMobileCard> = ({ item }) => {
             </div>
             <div className="underline" />
           </div>
+          <div className="card-description">
+            <div>
+              <p className="description-title">Screen</p>
+              <p className="description-title">Capacity</p>
+              <p className="description-title">RAM</p>
+            </div>
+            <div>
+              <p className="description-text">{screen}</p>
+              <p className="description-text">{capacity}</p>
+              <p className="description-text">{ram}</p>
+            </div>
+          </div>
+          <Button />
         </div>
       </li>
     </>
