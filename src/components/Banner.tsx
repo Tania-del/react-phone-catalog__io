@@ -32,7 +32,7 @@ export const Banner = () => {
   };
 
   return (
-    <section>
+    <section className="banner-section">
       <div className="banner">
         <button className="banner-arrow">
           <SvgArrowLeft className="arrow-image" onClick={handlePrevBanner} />

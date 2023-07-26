@@ -2,7 +2,7 @@ export interface Product {
   category: string;
   phoneId: string;
   itemId: string;
-  fullPrice: number;
+  fullPrice?: number;
   id: string;
   image: string;
   name: string;

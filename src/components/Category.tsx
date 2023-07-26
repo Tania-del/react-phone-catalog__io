@@ -25,12 +25,12 @@ export const Category: FC<ICategory> = ({ title }) => {
         <div className="category-wrapper">
           <img src={tablets} alt="tablets" />
           <h2 className="category-title">Tablets</h2>
-          <p className="category-text">95 models</p>
+          <p className="category-text">24 models</p>
         </div>
         <div className="category-wrapper">
           <img src={accessories} alt="accessories" />
           <h2 className="category-title">Accessories</h2>
-          <p className="category-text">95 models</p>
+          <p className="category-text">100 models</p>
         </div>
 
       </div>

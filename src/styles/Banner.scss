@@ -1,5 +1,9 @@
 @import "colors";
 
+.banner-section {
+  margin-bottom: 72px;
+}
+
 .banner {
   display: flex;
   gap: 16px;
@@ -23,7 +27,6 @@
     display: flex;
     gap: 10px;
     justify-content: center;
-
   }
 
   &-image {
@@ -42,7 +45,7 @@
     fill: $gray-icons;
 
     &__current {
-      fill: $primary-color
+      fill: $primary-color;
     }
   }
 }

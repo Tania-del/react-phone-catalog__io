@@ -1,0 +1,30 @@
+@import "colors";
+
+.footer {
+  padding: 36px 152px;
+  border-top: 1px solid $elements-color;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &-nav {
+    display: flex;
+    gap: 64px;
+  }
+
+  &-btn__wrapper {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  &-description {
+    font-family: Mont;
+font-size: 12px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+color: $gray-secondary;
+  }
+}
+

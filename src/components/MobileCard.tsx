@@ -27,7 +27,7 @@ export const MobileCard: FC<IMobileCard> = ({ item }) => {
             <h3 className="card-title">{name}</h3>
             <div className="card-price__wrapper">
               <p className="card-price">{`$${price}`}</p>
-              <p className="card-full__price">{`$${fullPrice}`}</p>
+              {fullPrice ? <p className="card-full__price">{`$${fullPrice}`}</p> : ''}
             </div>
             <div className="underline" />
           </div>

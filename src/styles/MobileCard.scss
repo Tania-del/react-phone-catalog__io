@@ -20,7 +20,7 @@
     font-weight: 500;
     line-height: 21px;
     color: $primary-color;
-    padding-bottom: 6.5px;
+    margin-bottom: 6.5px;
     height: 42px;
     width: 224px;
   }
@@ -85,16 +85,15 @@
 
 .description-text {
   text-align: right;
-font-family: "Mont", sans-serif;
-font-size: 12px;
-font-style: normal;
-font-weight: 600;
-line-height: normal;
-color: $primary-color;
-padding-bottom: 8px;
-
+  font-family: "Mont", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  color: $primary-color;
+  padding-bottom: 8px;
 }
 
 .description-text:last-child {
-padding-bottom: 0;
+  padding-bottom: 0;
 }
