@@ -19,12 +19,11 @@
   }
 
   &-description {
-    font-family: Mont;
-font-size: 12px;
-font-style: normal;
-font-weight: 600;
-line-height: normal;
-color: $gray-secondary;
+    font-family: "Mont", sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    color: $gray-secondary;
   }
 }
-

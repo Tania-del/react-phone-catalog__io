@@ -2,6 +2,8 @@
   display: none !important;
 }
 
+@import "fonts";
+
 * {
   box-sizing: border-box;
 }
@@ -13,6 +15,7 @@ svg {
 body {
   margin: 0;
   background-color: #fff;
+  font-family: "Mont", sans-serif;
 }
 
 ul {

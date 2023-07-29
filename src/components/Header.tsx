@@ -3,6 +3,7 @@ import SvgHeart from '../icons/Heart';
 import SvgLogo from '../icons/Logo';
 import SvgShoppingBag from '../icons/ShoppingBag';
 import '../styles/Header.scss';
+import { SearchBar } from './SearchBar';
 
 export default function Header() {
   return (
@@ -16,13 +17,17 @@ export default function Header() {
           <NavLink className="nav-item" to="/accessories">Accessories</NavLink>
         </nav>
       </div>
-      <div>
-        <button type="button" className="navigation-btn">
-          <SvgHeart />
-        </button>
-        <button type="button" className="navigation-btn">
-          <SvgShoppingBag />
-        </button>
+
+      <div className="nav-wrapper">
+        <SearchBar />
+        <div>
+          <button type="button" className="navigation-btn">
+            <SvgHeart />
+          </button>
+          <button type="button" className="navigation-btn">
+            <SvgShoppingBag />
+          </button>
+        </div>
       </div>
     </header>
   );

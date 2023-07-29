@@ -20,7 +20,7 @@
     max-height: 64px;
     border-left: 1px solid $elements-color;
     background-color: $white;
-        position: relative;
+    position: relative;
 
     &__accent::after {
       position: absolute;
@@ -68,5 +68,10 @@
         margin-top: 24px;
       }
     }
+  }
+
+  &-wrapper {
+    display: flex;
+    align-items: center;
   }
 }

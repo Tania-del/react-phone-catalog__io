@@ -1,0 +1,39 @@
+@import "colors";
+
+.products {
+  &-title {
+    font-family: "Mont", sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.32px;
+    padding-bottom: 4px;
+  }
+
+  &-filter__area {
+    display: flex;
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  &-wrapper {
+    display: flex;
+    gap: 16px;
+    margin: 40px 0 24px;
+  }
+}
+
+.filter-text {
+  color: $gray-secondary;
+  font-family: "Mont", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  padding-bottom: 4px;
+}
+
+.active {
+  fill: $primary-color;
+}
