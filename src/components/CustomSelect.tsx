@@ -1,6 +1,7 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import {
-  FC, useRef, useState, useEffect,
+  useRef, useState, useEffect,
 } from 'react';
 import SvgArrowDown from '../icons/ArrowDown';
 import '../styles/СustomSelect.scss';
@@ -10,12 +11,14 @@ import { Option } from '../type/Option';
 interface ICustomSelector {
   options: Option[];
   defaultOption: string | number;
+  handleFilter?: ((type: string) => void)
 }
 
-export const CustomSelect: FC<ICustomSelector> = ({
+export const CustomSelect = ({
   options,
   defaultOption,
-}) => {
+  handleFilter = () => {},
+}: ICustomSelector) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selectedOption, setSelectedOption] = useState(defaultOption);
   const [isClicked, setIsClicked] = useState<boolean>(false);
@@ -26,10 +29,11 @@ export const CustomSelect: FC<ICustomSelector> = ({
     setIsClicked(true);
   };
 
-  const handleSelectChange = (value: string | number) => {
+  const handleSelectChange = (value: string) => {
     setSelectedOption(String(value));
     setIsOpen(false);
     setIsClicked(false);
+    handleFilter(value);
   };
 
   useEffect(() => {

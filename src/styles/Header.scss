@@ -75,3 +75,40 @@
     align-items: center;
   }
 }
+
+.input-wrapper {
+  position: relative;
+  width: 326px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  border: none;
+  border-left: 1px solid $gray-icons;
+  padding: 23px 24px;
+  width: 100%;
+  outline: none;
+  padding-right: 60px;
+  cursor: pointer;
+
+  &::placeholder {
+    font-family: "Mont", sans-serif;
+    color: $gray-icons;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  &-search__btn {
+    position: absolute;
+    right: 8%;
+    top: 37%;
+    pointer-events: none;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+  }
+}

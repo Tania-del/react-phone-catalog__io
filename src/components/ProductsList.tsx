@@ -9,12 +9,14 @@ interface IProductsList {
   title: string;
 }
 
+// type FilterType = 'Newest' | 'Alphabetically' | 'Cheapest';
 // eslint-disable-next-line max-len
 export const ProductsList: FC<IProductsList> = ({
   products,
   title = 'title',
 }) => {
-  const [fullProducts] = useState<Product[]>(products);
+  const [fullProducts, setFullProducts] = useState<Product[]>(products);
+  // const [filter, setFilter] = useState('Newest');
 
   // eslint-disable-next-line no-console
   console.log(fullProducts);
@@ -26,14 +28,29 @@ export const ProductsList: FC<IProductsList> = ({
   ];
 
   const options2: Option[] = [
-    { value: 4, label: '4' },
-    { value: 8, label: '8' },
-    { value: 16, label: '16' },
+    { value: '4', label: '4' },
+    { value: '8', label: '8' },
+    { value: '16', label: '16' },
     { value: 'All', label: 'All' },
   ];
 
+  const handleFilter = (type: string) => {
+    const productInfo = products.map(({ year, name, price }) => ({
+      year,
+      name,
+      price,
+    }));
+
+    const actions: Record<string, Product[]> = {
+      Newest: productInfo.sort((a, b) => a.year - b.year),
+    };
+
+    setFullProducts(actions[type]);
+  };
+
   return (
-    <section className="products">
+    <>
+      {/* <section className="products"> */}
       <h1 className="products-title">{title}</h1>
       <p className="category-text">95 models</p>
 
@@ -41,7 +58,11 @@ export const ProductsList: FC<IProductsList> = ({
         <div>
           <p className="filter-text">Sort by</p>
           <div className="custom-selected">
-            <CustomSelect options={options1} defaultOption="Newest" />
+            <CustomSelect
+              options={options1}
+              defaultOption="Newest"
+              handleFilter={handleFilter}
+            />
           </div>
         </div>
 
@@ -52,6 +73,13 @@ export const ProductsList: FC<IProductsList> = ({
           </div>
         </div>
       </div>
-    </section>
+
+      {/* </section> */}
+      <section className="products">
+        <ul className="products-list">
+          <li />
+        </ul>
+      </section>
+    </>
   );
 };
