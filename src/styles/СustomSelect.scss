@@ -17,12 +17,14 @@
   position: absolute;
   top: 103%;
   left: -1%;
-  // z-index: 1;
+  z-index: 1;
+  background-color: $white;
   border: 1px solid $gray-icons;
   padding: 8px;
   list-style: none;
   width: 176px;
   cursor: pointer;
+
 }
 
 .custom-select.open .options {

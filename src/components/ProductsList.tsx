@@ -1,25 +1,30 @@
 import { FC, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+// import { useLocation, useNavigate } from 'react-router-dom';
 import { Product } from '../type/Product';
 import '../styles/ProductsList.scss';
 import { CustomSelect } from './CustomSelect';
 import { Option } from '../type/Option';
+import { MobileCard } from './MobileCard';
+import { useFilter } from '../hooks/useFilter';
 
 interface IProductsList {
   products: Product[];
   title: string;
 }
 
-// type FilterType = 'Newest' | 'Alphabetically' | 'Cheapest';
 // eslint-disable-next-line max-len
 export const ProductsList: FC<IProductsList> = ({
   products,
   title = 'title',
 }) => {
-  const [fullProducts, setFullProducts] = useState<Product[]>(products);
-  // const [filter, setFilter] = useState('Newest');
+  const [productsToRender, setProductsToRender] = useState<Product[]>(products);
+  const [allwaysFullProducts] = useState<Product[]>(products);
 
-  // eslint-disable-next-line no-console
-  console.log(fullProducts);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { getSort } = useFilter();
+
+  getSort();
 
   const options1: Option[] = [
     { value: 'Newest', label: 'Newest' },
@@ -34,23 +39,39 @@ export const ProductsList: FC<IProductsList> = ({
     { value: 'All', label: 'All' },
   ];
 
-  const handleFilter = (type: string) => {
-    const productInfo = products.map(({ year, name, price }) => ({
-      year,
-      name,
-      price,
-    }));
+  const handleFilterOption = (type: string) => {
+    const params = new URLSearchParams(searchParams);
 
-    const actions: Record<string, Product[]> = {
-      Newest: productInfo.sort((a, b) => a.year - b.year),
+    params.set('sort', type);
+    setSearchParams(params);
+
+    const actions: Record<string, () => Product[]> = {
+      Newest: () => [...products].sort((a, b) => b.year - a.year),
+      Alphabetically: () => [...products].sort((a, b) => a.year - b.year),
+      Cheapest: () => [...products].sort((a, b) => a.price - b.price),
     };
 
-    setFullProducts(actions[type]);
+    setProductsToRender(actions[type]());
+  };
+
+  const sliceProducts = (value: string) => {
+    const params = new URLSearchParams(searchParams);
+
+    params.set('limit', value);
+    setSearchParams(params);
+
+    if (value === 'All') {
+      return setProductsToRender(allwaysFullProducts);
+    }
+    // console.log(allwaysFullProducts);
+
+    const optionToSlice = Number(value);
+
+    return setProductsToRender(productsToRender.slice(0, optionToSlice));
   };
 
   return (
     <>
-      {/* <section className="products"> */}
       <h1 className="products-title">{title}</h1>
       <p className="category-text">95 models</p>
 
@@ -60,8 +81,8 @@ export const ProductsList: FC<IProductsList> = ({
           <div className="custom-selected">
             <CustomSelect
               options={options1}
-              defaultOption="Newest"
-              handleFilter={handleFilter}
+              defaultOption={searchParams.get('sort') || 'Newest'}
+              onReturnType={handleFilterOption}
             />
           </div>
         </div>
@@ -69,15 +90,23 @@ export const ProductsList: FC<IProductsList> = ({
         <div>
           <p className="filter-text">Items on page</p>
           <div className="custom-selected">
-            <CustomSelect options={options2} defaultOption={16} />
+            <CustomSelect
+              onReturnType={sliceProducts}
+              options={options2}
+              defaultOption={searchParams.get('limit') || 16}
+            />
           </div>
         </div>
       </div>
 
-      {/* </section> */}
       <section className="products">
-        <ul className="products-list">
-          <li />
+        <ul className="phones-list">
+          {productsToRender.map((product) => (
+            <MobileCard
+              item={product}
+              key={product.id}
+            />
+          ))}
         </ul>
       </section>
     </>

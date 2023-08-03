@@ -19,18 +19,20 @@
 
   &-container {
     margin-top: 24px;
+    overflow: hidden;
   }
 
   &-list {
     display: flex;
     gap: 16px;
-    flex-wrap: wrap;
+    // overflow: auto;
   }
 }
 
 .arrow-img__wrapper {
   display: flex;
   gap: 8px;
+  justify-content: end;
 }
 
 .arrow-btn {

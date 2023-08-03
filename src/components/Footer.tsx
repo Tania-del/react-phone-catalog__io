@@ -20,7 +20,12 @@ export const Footer = () => {
       </div> */}
       <div className="footer-btn__wrapper">
         <p className="footer-description">Back to top</p>
-        <button type="button" data-cy="backButton" className="arrow-btn" onClick={scrollToTop}>
+        <button
+          type="button"
+          data-cy="backButton"
+          className="arrow-btn"
+          onClick={scrollToTop}
+        >
           <SvgArrowUp />
         </button>
       </div>

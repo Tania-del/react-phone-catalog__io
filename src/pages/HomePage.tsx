@@ -1,14 +1,18 @@
 import '../styles/Container.scss';
 import { useState, useEffect } from 'react';
-import { Banner } from '../components/Banner';
-import { Category } from '../components/Category';
+// import { Banner } from '../components/Banner';
+// import { Category } from '../components/Category';
 import { MobileList } from '../components/MobileList';
 import products from '../products.json';
 import { Product } from '../type/Product';
 import { Footer } from '../components/Footer';
+// import { PhonesSlider } from '../components/PhonesSlider';
 
 export const HomePage = () => {
   const [brandNewProducts, setBrandNewProducts] = useState<Product[]>([]);
+
+  // eslint-disable-next-line no-console
+  console.log(brandNewProducts);
 
   useEffect(() => {
     const getBrandNewProducts = products.filter(
@@ -22,10 +26,10 @@ export const HomePage = () => {
   return (
     <>
       <div className="main-container">
-        <Banner />
+        {/* <Banner /> */}
         <MobileList products={products} title="Hot prices" />
-        <Category title="Shop by category" />
-        <MobileList products={brandNewProducts} title="Brand new models" />
+        {/* <Category title="Shop by category" /> */}
+        {/* <MobileList products={brandNewProducts} title="Brand new models" /> */}
       </div>
       <Footer />
     </>

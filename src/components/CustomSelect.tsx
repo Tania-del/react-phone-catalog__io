@@ -11,18 +11,22 @@ import { Option } from '../type/Option';
 interface ICustomSelector {
   options: Option[];
   defaultOption: string | number;
-  handleFilter?: ((type: string) => void)
+
+  onReturnType?: ((type: string) => void)
 }
 
 export const CustomSelect = ({
   options,
   defaultOption,
-  handleFilter = () => {},
+  onReturnType = () => { },
+
 }: ICustomSelector) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selectedOption, setSelectedOption] = useState(defaultOption);
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const selectRef = useRef<HTMLDivElement>(null);
+
+  // console.log(selectedOption);
 
   const toogleSelect = () => {
     setIsOpen(!isOpen);
@@ -33,7 +37,7 @@ export const CustomSelect = ({
     setSelectedOption(String(value));
     setIsOpen(false);
     setIsClicked(false);
-    handleFilter(value);
+    onReturnType(value);
   };
 
   useEffect(() => {
