@@ -97,3 +97,24 @@
 .description-text:last-child {
   padding-bottom: 0;
 }
+
+@media screen and (max-width: 1024px) {
+  .card {
+    width: calc(33.3vw - 10px);
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    width: calc(50vw - 10px);
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .card {
+    width: calc(100vw - 20px);
+    height: auto;
+  }
+}
