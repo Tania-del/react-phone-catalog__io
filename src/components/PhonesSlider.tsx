@@ -9,6 +9,7 @@ interface IPhonesSlider<T> {
   topLineButtons: (prevButton: () => void, nextButton: () => void) => ReactNode;
   children: ((item: T) => ReactNode) | ReactNode;
   spaceBetween: number;
+  numberOfVisibleItems: number;
 }
 
 export const PhonesSlider = <T extends unknown>({
@@ -16,43 +17,48 @@ export const PhonesSlider = <T extends unknown>({
   children,
   topLineButtons,
   spaceBetween,
+  numberOfVisibleItems,
 }: IPhonesSlider<T>) => {
   const refContainer = useRef<HTMLDivElement>(null);
   const refList = useRef<HTMLUListElement>(null);
 
   const [currentPosition, setCurrentPosition] = useState(0);
 
-  // const breakpoints = {
-  //   large: 1024,
-  //   medium: 768,
-  //   small: 0,
-  // };
-
-  const containerWidth = refContainer?.current?.clientWidth;
-  const cardElement = refList?.current?.children?.[0] as
-    | HTMLElement
-    | undefined;
-  const cardWidth = cardElement?.offsetWidth ?? 0;
-  const scrollWidth = refList?.current?.scrollWidth;
-
   const handleNextClick = () => {
-    if (currentPosition > -((scrollWidth ?? 0) - (containerWidth ?? 0))) {
+    const containerWidth = refContainer?.current?.clientWidth;
+    const cardElement = refList?.current?.children?.[0] as
+      | HTMLElement
+      | undefined;
+    const cardWidth = cardElement?.offsetWidth ?? 0;
+
+    // eslint-disable-next-line max-len
+    const totalWidth = (containerWidth ?? 0) * Math.ceil(items.length / numberOfVisibleItems)
+
+    + spaceBetween * (Math.ceil(items.length / numberOfVisibleItems) - 1);
+    const maxScrollPosition = -(totalWidth - (containerWidth ?? 0));
+    const newPosition = currentPosition - cardWidth - spaceBetween;
+
+    if (newPosition > maxScrollPosition) {
       setCurrentPosition(
-        (prevPosition) => prevPosition - cardWidth - spaceBetween,
+        // eslint-disable-next-line max-len
+        Math.max(newPosition, maxScrollPosition),
       );
     }
   };
 
   const handlePrevClick = () => {
+    const cardElement = refList?.current?.children?.[0] as
+      | HTMLElement
+      | undefined;
+    const cardWidth = cardElement?.offsetWidth ?? 0;
+
     if (currentPosition < 0) {
-      setCurrentPosition(
-        (prevPosition) => prevPosition + cardWidth + spaceBetween,
-      );
+      // eslint-disable-next-line max-len
+      setCurrentPosition((prevPosition) => Math.min(prevPosition + cardWidth + spaceBetween, 0));
     }
   };
 
   // eslint-disable-next-line @typescript-eslint/no-shadow
-
   return (
     <>
       {topLineButtons?.(handlePrevClick, handleNextClick)}
@@ -65,13 +71,10 @@ export const PhonesSlider = <T extends unknown>({
           }}
         >
           {items.map((item, index) => (
-            // eslint-disable-next-line react/no-array-index-key
             <Fragment
-              // style={{ width: `${cardWidth}px`, marginRight: `${spaceBetween}px` }}
               // eslint-disable-next-line react/no-array-index-key
               key={index}
             >
-
               {typeof children === 'function' ? children(item) : children}
             </Fragment>
           ))}

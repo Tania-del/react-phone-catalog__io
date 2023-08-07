@@ -98,6 +98,10 @@
   padding-bottom: 0;
 }
 
+.mobile-card {
+  margin-bottom: 24px;
+}
+
 @media screen and (max-width: 1024px) {
   .card {
     width: calc(33.3vw - 10px);

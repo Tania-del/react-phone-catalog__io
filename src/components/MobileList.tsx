@@ -25,8 +25,8 @@ export const MobileList: FC<IMobileList> = ({
       </div>
       <PhonesSlider
         items={products}
-        // perPage={4}
         spaceBetween={16}
+        numberOfVisibleItems={4}
         topLineButtons={(prevButton, nextButton) => (
           <div className="arrow-img__wrapper">
             <button type="button" onClick={prevButton} className="arrow-btn">

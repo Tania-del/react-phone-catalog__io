@@ -22,9 +22,11 @@ export const ProductsList: FC<IProductsList> = ({
   const [allwaysFullProducts] = useState<Product[]>(products);
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const { getSort } = useFilter();
+  const { getSort, getLimit, getQuery } = useFilter();
 
   getSort();
+  getLimit();
+  getQuery();
 
   const options1: Option[] = [
     { value: 'Newest', label: 'Newest' },
@@ -100,7 +102,7 @@ export const ProductsList: FC<IProductsList> = ({
       </div>
 
       <section className="products">
-        <ul className="phones-list">
+        <ul className="phones-list products-list">
           {productsToRender.map((product) => (
             <MobileCard
               item={product}

@@ -1,6 +1,10 @@
 @import "colors";
 
 .products {
+  max-height: 2148px;
+  overflow: hidden;
+  margin-bottom: 40px;
+
   &-title {
     font-family: "Mont", sans-serif;
     font-size: 32px;
@@ -21,6 +25,10 @@
     display: flex;
     gap: 16px;
     margin: 40px 0 24px;
+  }
+
+  &-list {
+    flex-wrap: wrap;
   }
 }
 

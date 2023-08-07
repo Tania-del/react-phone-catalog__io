@@ -20,7 +20,7 @@ export const MobileCard: FC<IMobileCard> = ({ item }) => {
 
   return (
     <>
-      <li className="card">
+      <li className="card mobile-card">
         <img className="card-img" src={image} alt="img" />
         <div className="card-container">
           <div>
