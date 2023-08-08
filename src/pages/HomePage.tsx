@@ -25,6 +25,7 @@ export const HomePage = () => {
   return (
     <>
       <div className="main-container">
+
         <Banner />
         <MobileList products={products} title="Hot prices" />
         <Category title="Shop by category" />

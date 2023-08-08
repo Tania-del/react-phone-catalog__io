@@ -49,7 +49,7 @@ export const Banner = () => {
         </button>
       </div>
       <div className="banner-dots">
-        {bannerImages.map((_, index) => <SvgDot key={index} className={`banner-img ${index === currentImageIndex ? 'banner-img__current' : ''}`} />)}
+        {bannerImages?.map((_, index) => <SvgDot key={index} className={`banner-img ${index === currentImageIndex ? 'banner-img__current' : ''}`} />)}
       </div>
     </section>
   );

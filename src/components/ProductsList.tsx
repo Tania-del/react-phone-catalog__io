@@ -1,4 +1,6 @@
-import { FC, useState } from 'react';
+import {
+  FC, useContext, useEffect, useState,
+} from 'react';
 import { useSearchParams } from 'react-router-dom';
 // import { useLocation, useNavigate } from 'react-router-dom';
 import { Product } from '../type/Product';
@@ -6,7 +8,7 @@ import '../styles/ProductsList.scss';
 import { CustomSelect } from './CustomSelect';
 import { Option } from '../type/Option';
 import { MobileCard } from './MobileCard';
-import { useFilter } from '../hooks/useFilter';
+import { SearchContext } from '../context/SearchContext';
 
 interface IProductsList {
   products: Product[];
@@ -22,11 +24,7 @@ export const ProductsList: FC<IProductsList> = ({
   const [allwaysFullProducts] = useState<Product[]>(products);
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const { getSort, getLimit, getQuery } = useFilter();
-
-  getSort();
-  getLimit();
-  getQuery();
+  const { inputValue } = useContext(SearchContext);
 
   const options1: Option[] = [
     { value: 'Newest', label: 'Newest' },
@@ -41,36 +39,72 @@ export const ProductsList: FC<IProductsList> = ({
     { value: 'All', label: 'All' },
   ];
 
-  const handleFilterOption = (type: string) => {
+  // eslint-disable-next-line max-len
+  const handleFilterByType = (value = 'All', type: 'sort' | 'limit'): void => {
     const params = new URLSearchParams(searchParams);
 
-    params.set('sort', type);
-    setSearchParams(params);
+    if (type === 'sort') {
+      params.set('sort', value);
+      setSearchParams(params);
 
-    const actions: Record<string, () => Product[]> = {
-      Newest: () => [...products].sort((a, b) => b.year - a.year),
-      Alphabetically: () => [...products].sort((a, b) => a.year - b.year),
-      Cheapest: () => [...products].sort((a, b) => a.price - b.price),
-    };
+      const actions: Record<string, () => Product[]> = {
+        Newest: () => [...products].sort((a, b) => b.year - a.year),
+        Alphabetically: () => [...products].sort((a, b) => a.year - b.year),
+        Cheapest: () => [...products].sort((a, b) => a.price - b.price),
+      };
 
-    setProductsToRender(actions[type]());
-  };
-
-  const sliceProducts = (value: string) => {
-    const params = new URLSearchParams(searchParams);
-
-    params.set('limit', value);
-    setSearchParams(params);
-
-    if (value === 'All') {
-      return setProductsToRender(allwaysFullProducts);
+      setProductsToRender(actions?.[value]?.());
     }
-    // console.log(allwaysFullProducts);
 
-    const optionToSlice = Number(value);
+    if (type === 'limit') {
+      params.set('limit', value);
+      setSearchParams(params);
 
-    return setProductsToRender(productsToRender.slice(0, optionToSlice));
+      if (value === 'All') {
+        setProductsToRender(allwaysFullProducts);
+      }
+
+      const optionToSlice = Number(value);
+
+      setProductsToRender(productsToRender.slice(0, optionToSlice));
+    }
   };
+
+  // const getSort = () => {
+  //   const params = new URLSearchParams(document.location.search);
+
+  //   return params.get('sort') ?? '';
+  // };
+
+  // const getLimit = () => {
+  //   const params = new URLSearchParams(document.location.search);
+
+  //   return params.get('limit') ?? '';
+  // };
+
+  const getQuery = () => {
+    const params = new URLSearchParams(document.location.search);
+
+    return params.get('query' ?? '');
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  // const filterByQuery = (products: Product[], query = '') => products.filter(
+  //   (product) => product.name.includes(query || getQuery() || ''),
+  // );
+
+  // const filterAndSortProducts = () => {
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  const filterByQuery = (products: Product[], query = '') => products.filter(
+    (product) => product.name.includes(query || getQuery() || ''),
+  );
+
+  const filteredByQuery = filterByQuery(productsToRender, inputValue);
+
+  useEffect(() => {
+    setProductsToRender(filteredByQuery);
+  }, []);
+  // }
 
   return (
     <>
@@ -84,7 +118,8 @@ export const ProductsList: FC<IProductsList> = ({
             <CustomSelect
               options={options1}
               defaultOption={searchParams.get('sort') || 'Newest'}
-              onReturnType={handleFilterOption}
+              // eslint-disable-next-line max-len
+              onReturnType={(value) => handleFilterByType(value, 'sort')}
             />
           </div>
         </div>
@@ -93,9 +128,10 @@ export const ProductsList: FC<IProductsList> = ({
           <p className="filter-text">Items on page</p>
           <div className="custom-selected">
             <CustomSelect
-              onReturnType={sliceProducts}
+              // onReturnType={handleSliceProducts}
               options={options2}
               defaultOption={searchParams.get('limit') || 16}
+              onReturnType={(value) => handleFilterByType(value, 'limit')}
             />
           </div>
         </div>
@@ -103,11 +139,8 @@ export const ProductsList: FC<IProductsList> = ({
 
       <section className="products">
         <ul className="phones-list products-list">
-          {productsToRender.map((product) => (
-            <MobileCard
-              item={product}
-              key={product.id}
-            />
+          {productsToRender?.map((product) => (
+            <MobileCard item={product} key={product.id} />
           ))}
         </ul>
       </section>

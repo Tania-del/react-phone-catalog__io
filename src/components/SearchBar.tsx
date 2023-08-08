@@ -1,11 +1,26 @@
-import { useState } from 'react';
+/* eslint-disable @typescript-eslint/no-shadow */
+import { ChangeEvent, useContext } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { SearchContext } from '../context/SearchContext';
 import SvgSearch from '../icons/Search';
+// import products from '../products.json';
 
 export const SearchBar = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const { inputValue, setInputValue } = useContext(SearchContext);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const handleSearch = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(target.value);
+  // eslint-disable-next-line max-len
+  const handleInputChange = ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
+    const params = new URLSearchParams(searchParams);
+
+    if (value) {
+      params.set('query', value);
+    } else {
+      params.delete('query');
+    }
+
+    setSearchParams(params);
+    setInputValue(value);
   };
 
   return (
@@ -13,8 +28,8 @@ export const SearchBar = () => {
       <input
         type="text"
         placeholder="Search in phohes..."
-        value={searchQuery}
-        onChange={handleSearch}
+        value={inputValue}
+        onChange={handleInputChange}
         required
         className="input"
       />

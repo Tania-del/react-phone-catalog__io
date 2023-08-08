@@ -23,6 +23,8 @@ export const useFilter = () => {
     return params.get('query' ?? '');
   };
 
+  // eslint-disable-next-line max-len
+
   return {
     getSort,
     getLimit,

@@ -12,13 +12,14 @@ interface ICustomSelector {
   options: Option[];
   defaultOption: string | number;
 
-  onReturnType?: ((type: string) => void)
+  // eslint-disable-next-line max-len
+  onReturnType?: ((type?: string, value?: string) => void)
 }
 
 export const CustomSelect = ({
   options,
   defaultOption,
-  onReturnType = () => { },
+  onReturnType,
 
 }: ICustomSelector) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -37,7 +38,7 @@ export const CustomSelect = ({
     setSelectedOption(String(value));
     setIsOpen(false);
     setIsClicked(false);
-    onReturnType(value);
+    onReturnType?.(value);
   };
 
   useEffect(() => {
@@ -63,7 +64,7 @@ export const CustomSelect = ({
         <SvgArrowDown className={`arrow-image ${isOpen ? 'active' : ''}`} />
       </div>
       <ul className="options">
-        {options.map((option) => (
+        {options?.map((option) => (
           // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
           <li
             key={option.value}

@@ -70,7 +70,7 @@ export const PhonesSlider = <T extends unknown>({
             transform: `translateX(${currentPosition}px)`,
           }}
         >
-          {items.map((item, index) => (
+          {items?.map((item, index) => (
             <Fragment
               // eslint-disable-next-line react/no-array-index-key
               key={index}

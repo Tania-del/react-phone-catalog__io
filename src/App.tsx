@@ -3,18 +3,21 @@ import './styles/App.scss';
 import Header from './components/Header';
 import { HomePage } from './pages/HomePage';
 import { PhonesPage } from './pages/PhonesPage';
+import { SearchContextProvider } from './context/SearchContext';
 
 export const App = () => {
   return (
     <div className="App">
-      <Header />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/phones" element={<PhonesPage />} />
-        <Route path="/tablets" element={<h1>Tablets page</h1>} />
-        <Route path="/accessories" element={<h1>Accessories page</h1>} />
-        <Route path="/product/:productId" />
-      </Routes>
+      <SearchContextProvider>
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/phones" element={<PhonesPage />} />
+          <Route path="/tablets" element={<h1>Tablets page</h1>} />
+          <Route path="/accessories" element={<h1>Accessories page</h1>} />
+          <Route path="/product/:productId" />
+        </Routes>
+      </SearchContextProvider>
     </div>
   );
 };
