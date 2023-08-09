@@ -1,5 +1,5 @@
 import {
-  FC, useContext, useEffect, useState,
+  FC, useEffect, useState, useContext,
 } from 'react';
 import { useSearchParams } from 'react-router-dom';
 // import { useLocation, useNavigate } from 'react-router-dom';
@@ -39,42 +39,47 @@ export const ProductsList: FC<IProductsList> = ({
     { value: 'All', label: 'All' },
   ];
 
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  const sort = (key: string, products: Product[]) => {
+    const actions: Record<string, () => Product[]> = {
+      Newest: () => [...products].sort((a, b) => b.year - a.year),
+      Alphabetically: () => [...products].sort((a, b) => a.year - b.year),
+      Cheapest: () => [...products].sort((a, b) => a.price - b.price),
+    };
+
+    return actions[key]();
+  };
+
   // eslint-disable-next-line max-len
-  const handleFilterByType = (value = 'All', type: 'sort' | 'limit'): void => {
+  const handleFilterByType = (key = 'All', type: 'sort' | 'limit'): void => {
     const params = new URLSearchParams(searchParams);
 
     if (type === 'sort') {
-      params.set('sort', value);
+      params.set('sort', key);
       setSearchParams(params);
 
-      const actions: Record<string, () => Product[]> = {
-        Newest: () => [...products].sort((a, b) => b.year - a.year),
-        Alphabetically: () => [...products].sort((a, b) => a.year - b.year),
-        Cheapest: () => [...products].sort((a, b) => a.price - b.price),
-      };
-
-      setProductsToRender(actions?.[value]?.());
+      setProductsToRender(sort(key, products));
     }
 
     if (type === 'limit') {
-      params.set('limit', value);
+      params.set('limit', key);
       setSearchParams(params);
 
-      if (value === 'All') {
+      if (key === 'All') {
         setProductsToRender(allwaysFullProducts);
       }
 
-      const optionToSlice = Number(value);
+      const optionToSlice = Number(key);
 
       setProductsToRender(productsToRender.slice(0, optionToSlice));
     }
   };
 
-  // const getSort = () => {
-  //   const params = new URLSearchParams(document.location.search);
+  const getSort = () => {
+    const params = new URLSearchParams(document.location.search);
 
-  //   return params.get('sort') ?? '';
-  // };
+    return params.get('sort') ?? '';
+  };
 
   // const getLimit = () => {
   //   const params = new URLSearchParams(document.location.search);
@@ -95,16 +100,42 @@ export const ProductsList: FC<IProductsList> = ({
 
   // const filterAndSortProducts = () => {
   // eslint-disable-next-line @typescript-eslint/no-shadow
-  const filterByQuery = (products: Product[], query = '') => products.filter(
-    (product) => product.name.includes(query || getQuery() || ''),
-  );
+  const filterByQuery = (products: Product[], query?: string): Product[] => {
+    const input = typeof query === 'string' ? query : getQuery() ?? '';
 
-  const filteredByQuery = filterByQuery(productsToRender, inputValue);
+    const filteredProductsByQuery = products.filter(
+      (product) => product.name.includes(input),
+    );
+
+    return filteredProductsByQuery;
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-inferrable-types
+  const sortByQuery = (arr: Product[], key?: string) => {
+    const validatedSort = key || getSort();
+
+    if (!validatedSort) {
+      return arr;
+    }
+
+    return sort(validatedSort, arr);
+  };
 
   useEffect(() => {
-    setProductsToRender(filteredByQuery);
+    const filteredByQuery = filterByQuery(allwaysFullProducts, inputValue);
+
+    const sortedByQuery = sortByQuery(filteredByQuery);
+
+    setProductsToRender(sortedByQuery);
+  }, [inputValue]);
+
+  useEffect(() => {
+    const filteredByQuery = filterByQuery(allwaysFullProducts);
+
+    const sortedByQuery = sortByQuery(filteredByQuery);
+
+    setProductsToRender(sortedByQuery);
   }, []);
-  // }
 
   return (
     <>
@@ -128,7 +159,6 @@ export const ProductsList: FC<IProductsList> = ({
           <p className="filter-text">Items on page</p>
           <div className="custom-selected">
             <CustomSelect
-              // onReturnType={handleSliceProducts}
               options={options2}
               defaultOption={searchParams.get('limit') || 16}
               onReturnType={(value) => handleFilterByType(value, 'limit')}

@@ -3,7 +3,6 @@ import { ChangeEvent, useContext } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { SearchContext } from '../context/SearchContext';
 import SvgSearch from '../icons/Search';
-// import products from '../products.json';
 
 export const SearchBar = () => {
   const { inputValue, setInputValue } = useContext(SearchContext);
