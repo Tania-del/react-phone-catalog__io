@@ -9,6 +9,7 @@ import { CustomSelect } from './CustomSelect';
 import { Option } from '../type/Option';
 import { MobileCard } from './MobileCard';
 import { SearchContext } from '../context/SearchContext';
+import { Breadcrumbs } from './Breadcrumbs';
 
 interface IProductsList {
   products: Product[];
@@ -50,29 +51,17 @@ export const ProductsList: FC<IProductsList> = ({
     return actions[key]();
   };
 
-  // eslint-disable-next-line max-len
-  const handleFilterByType = (key = 'All', type: 'sort' | 'limit'): void => {
-    const params = new URLSearchParams(searchParams);
-
-    if (type === 'sort') {
-      params.set('sort', key);
-      setSearchParams(params);
-
-      setProductsToRender(sort(key, products));
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  const slice = (key: string, arr: Product[]) => {
+    if (key === 'All') {
+      return arr;
     }
 
-    if (type === 'limit') {
-      params.set('limit', key);
-      setSearchParams(params);
+    const optionToSlice = Number(key);
 
-      if (key === 'All') {
-        setProductsToRender(allwaysFullProducts);
-      }
+    const slicedProducts = arr.slice(0, optionToSlice);
 
-      const optionToSlice = Number(key);
-
-      setProductsToRender(productsToRender.slice(0, optionToSlice));
-    }
+    return slicedProducts;
   };
 
   const getSort = () => {
@@ -81,11 +70,11 @@ export const ProductsList: FC<IProductsList> = ({
     return params.get('sort') ?? '';
   };
 
-  // const getLimit = () => {
-  //   const params = new URLSearchParams(document.location.search);
+  const getLimit = () => {
+    const params = new URLSearchParams(document.location.search);
 
-  //   return params.get('limit') ?? '';
-  // };
+    return params.get('limit') ?? '';
+  };
 
   const getQuery = () => {
     const params = new URLSearchParams(document.location.search);
@@ -93,12 +82,6 @@ export const ProductsList: FC<IProductsList> = ({
     return params.get('query' ?? '');
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  // const filterByQuery = (products: Product[], query = '') => products.filter(
-  //   (product) => product.name.includes(query || getQuery() || ''),
-  // );
-
-  // const filterAndSortProducts = () => {
   // eslint-disable-next-line @typescript-eslint/no-shadow
   const filterByQuery = (products: Product[], query?: string): Product[] => {
     const input = typeof query === 'string' ? query : getQuery() ?? '';
@@ -121,24 +104,64 @@ export const ProductsList: FC<IProductsList> = ({
     return sort(validatedSort, arr);
   };
 
+  const limitByQuery = (arr: Product[], key?: string) => {
+    const validatedLimit = key || getLimit();
+
+    if (!validatedLimit) {
+      return arr;
+    }
+
+    return slice(validatedLimit, arr);
+  };
+
+  // eslint-disable-next-line max-len
+  const handleFilterByType = (key = 'All', type: 'sort' | 'limit'): void => {
+    const params = new URLSearchParams(searchParams);
+
+    if (type === 'sort') {
+      params.set('sort', key);
+      setSearchParams(params);
+
+      const filteredByQuery = filterByQuery(allwaysFullProducts);
+      const sortedByQuery = sortByQuery(filteredByQuery, key);
+      const slicedByLimit = limitByQuery(sortedByQuery);
+
+      setProductsToRender(slicedByLimit);
+    }
+
+    if (type === 'limit') {
+      params.set('limit', key);
+      setSearchParams(params);
+
+      const filteredByQuery = filterByQuery(allwaysFullProducts);
+      const sortedByQuery = sortByQuery(filteredByQuery);
+      const slicedByLimit = limitByQuery(sortedByQuery, key);
+
+      setProductsToRender(slicedByLimit);
+    }
+  };
+
   useEffect(() => {
     const filteredByQuery = filterByQuery(allwaysFullProducts, inputValue);
-
     const sortedByQuery = sortByQuery(filteredByQuery);
+    const slicedByLimit = limitByQuery(sortedByQuery);
 
-    setProductsToRender(sortedByQuery);
+    setProductsToRender(slicedByLimit);
   }, [inputValue]);
 
   useEffect(() => {
-    const filteredByQuery = filterByQuery(allwaysFullProducts);
+    const sortedByQuery = sortByQuery(allwaysFullProducts);
 
-    const sortedByQuery = sortByQuery(filteredByQuery);
+    const filteredByQuery = filterByQuery(sortedByQuery);
 
-    setProductsToRender(sortedByQuery);
+    const slicedByLimit = limitByQuery(filteredByQuery);
+
+    setProductsToRender(slicedByLimit);
   }, []);
 
   return (
     <>
+      <Breadcrumbs />
       <h1 className="products-title">{title}</h1>
       <p className="category-text">95 models</p>
 
