@@ -11,7 +11,6 @@ export const HomePage = () => {
   const [brandNewProducts, setBrandNewProducts] = useState<Product[]>([]);
 
   // eslint-disable-next-line no-console
-  console.log(brandNewProducts);
 
   useEffect(() => {
     const getBrandNewProducts = products.filter(

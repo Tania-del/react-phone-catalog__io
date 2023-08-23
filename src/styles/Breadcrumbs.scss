@@ -6,28 +6,23 @@
   display: inline-flex;
   gap: 8px;
 
-     &-arrow__right {
+  &-arrow__right {
     fill: $gray-icons;
-
-
   }
-
-
 }
 
 .breadcrumb {
   &-active {
     color: $primary-color;
     text-decoration: none;
-  font-family: "Mont", sans-serif;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  line-height: 1.5;
+    font-family: "Mont", sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.5;
   }
 
-  &-not-active{
+  &-not-active {
     color: $gray-secondary;
   }
 }
