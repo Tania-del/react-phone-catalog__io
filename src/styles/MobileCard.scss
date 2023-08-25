@@ -1,8 +1,9 @@
 @import "colors";
 
 .card {
-  width: 272px;
-  height: 507px;
+  --per-row: 1;
+  --calc: calc((100% / var(--per-row)) - (var(--col-gap) * (var(--per-row) - 1)) / var(--per-row));
+  width: 100%;
   border: 1px solid $elements-color;
   text-align: center;
 
@@ -102,23 +103,44 @@
   margin-bottom: 24px;
 }
 
-@media screen and (max-width: 1024px) {
+// @media screen and (max-width: 1024px) {
+//   .card {
+//     width: calc(33.3vw - 10px);
+//     height: auto;
+//   }
+// }
+
+// @media screen and (max-width: 768px) {
+//   .card {
+//     width: calc(50vw - 10px);
+//     height: auto;
+//   }
+// }
+
+// @media screen and (max-width: 480px) {
+//   .card {
+//     width: calc(100vw - 20px);
+//     height: auto;
+//   }
+// }
+@media screen and (min-width: 600px) {
   .card {
-    width: calc(33.3vw - 10px);
-    height: auto;
+    --per-row: 2;
+    width: var(--calc)
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 1000px) {
   .card {
-    width: calc(50vw - 10px);
-    height: auto;
+     --per-row: 3;
+    width: var(--calc)
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (min-width: 1200px) {
   .card {
-    width: calc(100vw - 20px);
-    height: auto;
+     --per-row: 4;
+    width: var(--calc)
   }
 }
+

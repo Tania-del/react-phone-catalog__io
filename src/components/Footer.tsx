@@ -1,14 +1,10 @@
 import SvgArrowUp from '../icons/ArrowUp';
 import SvgLogo from '../icons/Logo';
 import '../styles/Footer.scss';
+import { scrollToTop } from '../helpers/scrollToTop';
 
 export const Footer = () => {
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
+  scrollToTop();
 
   return (
     <footer className="footer">

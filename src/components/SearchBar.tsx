@@ -14,6 +14,7 @@ export const SearchBar = () => {
 
     if (value) {
       params.set('query', value);
+      params.delete('page');
     } else {
       params.delete('query');
     }

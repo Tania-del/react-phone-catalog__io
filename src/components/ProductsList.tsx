@@ -28,6 +28,7 @@ export const ProductsList: FC<IProductsList> = ({
 
   const [searchParams, setSearchParams] = useSearchParams();
   const { inputValue } = useContext(SearchContext);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   const options1: Option[] = [
     { value: 'Newest', label: 'Newest' },
@@ -75,6 +76,8 @@ export const ProductsList: FC<IProductsList> = ({
   const getLimit = () => {
     const params = new URLSearchParams(document.location.search);
 
+    // console.log(params.get('limit') ?? '');
+
     return params.get('limit') ?? '';
   };
 
@@ -84,12 +87,18 @@ export const ProductsList: FC<IProductsList> = ({
     return params.get('query' ?? '');
   };
 
+  const getPage = () => {
+    const params = new URLSearchParams(document.location.search);
+
+    return params.get('page') ?? 1;
+  };
+
   // eslint-disable-next-line @typescript-eslint/no-shadow
   const filterByQuery = (products: Product[], query?: string): Product[] => {
     const input = typeof query === 'string' ? query : getQuery() ?? '';
 
     const filteredProductsByQuery = products.filter(
-      (product) => product.name.includes(input),
+      (product) => product.name.toLowerCase().includes(input),
     );
 
     return filteredProductsByQuery;
@@ -116,14 +125,14 @@ export const ProductsList: FC<IProductsList> = ({
     return slice(validatedLimit, arr);
   };
 
-  const perPage = Number(getLimit());
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const perPage = Number(getLimit()) || 16;
 
   const calculatePages = (
     total: number, elPerPage: number,
   ) => Math.ceil(total / elPerPage);
 
   const pages = calculatePages(allwaysFullProducts.length, Number(perPage));
+  // console.log('perPage',perPage);
 
   // eslint-disable-next-line max-len
   const handleFilterByType = (key: string | number = 'All', type: 'sort' | 'limit' | 'pagination'): void => {
@@ -131,38 +140,54 @@ export const ProductsList: FC<IProductsList> = ({
 
     if (type === 'sort') {
       params.set('sort', String(key));
+      params.delete('page');
       setSearchParams(params);
 
       const filteredByQuery = filterByQuery(allwaysFullProducts);
       const sortedByQuery = sortByQuery(filteredByQuery, String(key));
       const slicedByLimit = limitByQuery(sortedByQuery);
 
+      setCurrentPage(1);
       setProductsToRender(slicedByLimit);
     }
 
     if (type === 'limit') {
       params.set('limit', String(key));
+      params.delete('page');
       setSearchParams(params);
 
       const filteredByQuery = filterByQuery(allwaysFullProducts);
       const sortedByQuery = sortByQuery(filteredByQuery);
       const slicedByLimit = limitByQuery(sortedByQuery, String(key));
 
+      setCurrentPage(1);
       setProductsToRender(slicedByLimit);
     }
 
     if (type === 'pagination' && typeof key === 'number') {
       const filteredByQuery = filterByQuery(allwaysFullProducts);
       const sortedByQuery = sortByQuery(filteredByQuery);
-      // eslint-disable-next-line max-len
-      // const perPageQuery = params.get('limit') ?? perPage;
 
       const slicedByLimit = sortedByQuery.slice(perPage * key - perPage, perPage * key);
 
-      console.log('perPageQuery', perPage);
-
+      // setCurrentPage(1)
       setProductsToRender(slicedByLimit);
     }
+  };
+
+  const onPageChange = (value: number) => {
+    const params = new URLSearchParams(searchParams);
+
+    if (value !== 1) {
+      params.set('page', String(value));
+    } else {
+      params.delete('page');
+    }
+
+    setSearchParams(params);
+    setCurrentPage(value);
+
+    handleFilterByType(value, 'pagination');
   };
 
   useEffect(() => {
@@ -170,15 +195,21 @@ export const ProductsList: FC<IProductsList> = ({
     const sortedByQuery = sortByQuery(filteredByQuery);
     const slicedByLimit = limitByQuery(sortedByQuery);
 
+    const page = getPage();
+
+    setCurrentPage(Number(page) || 1);
+
     setProductsToRender(slicedByLimit);
   }, [inputValue]);
 
   useEffect(() => {
-    const sortedByQuery = sortByQuery(allwaysFullProducts);
+    const filteredByQuery = filterByQuery(allwaysFullProducts);
 
-    const filteredByQuery = filterByQuery(sortedByQuery);
+    const sortedByQuery = sortByQuery(filteredByQuery);
 
-    const slicedByLimit = limitByQuery(filteredByQuery);
+    const page = getPage();
+
+    const slicedByLimit = sortedByQuery.slice(perPage * Number(page) - perPage, perPage * Number(page));
 
     setProductsToRender(slicedByLimit);
   }, []);
@@ -207,7 +238,6 @@ export const ProductsList: FC<IProductsList> = ({
             <CustomSelect
               options={options2}
               defaultOption={searchParams.get('limit') || 16}
-              // onChange={handlePerPage}
               onReturnType={(value) => handleFilterByType(value, 'limit')}
             />
           </div>
@@ -222,14 +252,7 @@ export const ProductsList: FC<IProductsList> = ({
         </ul>
       </section>
       <Pagination
-        onPageChange={(page) => {
-          const params = new URLSearchParams(searchParams);
-
-          params.set('page', String(page));
-          setSearchParams(params);
-          setCurrentPage(page);
-          handleFilterByType(page, 'pagination');
-        }}
+        onPageChange={onPageChange}
         total={pages}
         currentPage={currentPage}
       />

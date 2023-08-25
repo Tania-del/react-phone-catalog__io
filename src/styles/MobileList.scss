@@ -23,8 +23,9 @@
   }
 
   &-list {
+    --col-gap: 16px;
     display: flex;
-    gap: 16px;
+    gap: var(--col-gap);
     transition: transform 250ms linear 0s;
   }
 }
