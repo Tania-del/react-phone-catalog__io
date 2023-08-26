@@ -97,9 +97,7 @@ export const ProductsList: FC<IProductsList> = ({
   const filterByQuery = (products: Product[], query?: string): Product[] => {
     const input = typeof query === 'string' ? query : getQuery() ?? '';
 
-    const filteredProductsByQuery = products.filter(
-      (product) => product.name.toLowerCase().includes(input),
-    );
+    const filteredProductsByQuery = products.filter((product) => product.name.toLowerCase().includes(input));
 
     return filteredProductsByQuery;
   };
@@ -127,15 +125,16 @@ export const ProductsList: FC<IProductsList> = ({
 
   const perPage = Number(getLimit()) || 16;
 
-  const calculatePages = (
-    total: number, elPerPage: number,
-  ) => Math.ceil(total / elPerPage);
+  const calculatePages = (total: number, elPerPage: number) => Math.ceil(total / elPerPage);
 
   const pages = calculatePages(allwaysFullProducts.length, Number(perPage));
   // console.log('perPage',perPage);
 
   // eslint-disable-next-line max-len
-  const handleFilterByType = (key: string | number = 'All', type: 'sort' | 'limit' | 'pagination'): void => {
+  const handleFilterByType = (
+    key: string | number = 'All',
+    type: 'sort' | 'limit' | 'pagination',
+  ): void => {
     const params = new URLSearchParams(searchParams);
 
     if (type === 'sort') {
@@ -168,7 +167,10 @@ export const ProductsList: FC<IProductsList> = ({
       const filteredByQuery = filterByQuery(allwaysFullProducts);
       const sortedByQuery = sortByQuery(filteredByQuery);
 
-      const slicedByLimit = sortedByQuery.slice(perPage * key - perPage, perPage * key);
+      const slicedByLimit = sortedByQuery.slice(
+        perPage * key - perPage,
+        perPage * key,
+      );
 
       // setCurrentPage(1)
       setProductsToRender(slicedByLimit);
@@ -209,7 +211,10 @@ export const ProductsList: FC<IProductsList> = ({
 
     const page = getPage();
 
-    const slicedByLimit = sortedByQuery.slice(perPage * Number(page) - perPage, perPage * Number(page));
+    const slicedByLimit = sortedByQuery.slice(
+      perPage * Number(page) - perPage,
+      perPage * Number(page),
+    );
 
     setProductsToRender(slicedByLimit);
   }, []);
@@ -219,7 +224,7 @@ export const ProductsList: FC<IProductsList> = ({
       <Breadcrumbs />
       <h1 className="products-title">{title}</h1>
       <p className="category-text">95 models</p>
-      <div className="products-wrapper">
+      <div className="products-type__wrapper">
         <div>
           <p className="filter-text">Sort by</p>
           <div className="custom-selected">
@@ -244,13 +249,15 @@ export const ProductsList: FC<IProductsList> = ({
         </div>
       </div>
 
-      <section className="products">
-        <ul className="phones-list products-list">
-          {productsToRender?.map((product) => (
-            <MobileCard item={product} key={product.id} />
-          ))}
-        </ul>
-      </section>
+      <div className="products-wrapper">
+        <section className="products">
+          <ul className="products-list">
+            {productsToRender?.map((product) => (
+              <MobileCard item={product} key={product.id} />
+            ))}
+          </ul>
+        </section>
+      </div>
       <Pagination
         onPageChange={onPageChange}
         total={pages}

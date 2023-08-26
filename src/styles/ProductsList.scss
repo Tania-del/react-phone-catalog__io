@@ -20,15 +20,32 @@
     margin-top: 40px;
   }
 
-  &-wrapper {
+  &-type__wrapper {
     display: flex;
     gap: 16px;
     margin: 40px 0 24px;
   }
 
+  &-wrapper {
+    display: grid;
+    justify-items: center;
+    }
+
   &-list {
     flex-wrap: wrap;
+    max-width: 1136px;
+    margin: 0 auto;
+    display: grid;
+    gap: 16px;
+    justify-items: center;
   }
+}
+
+.mobile-card {
+  margin-bottom: 24px;
+  align-items: center;
+  justify-content: center;
+
 }
 
 .filter-text {
@@ -43,4 +60,16 @@
 
 .active {
   fill: $primary-color;
+}
+
+@media (min-width: 600px) {
+  .products-list { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 900px) {
+  .products-list { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 1200px) {
+  .products-list { grid-template-columns: repeat(4, 1fr); }
 }
