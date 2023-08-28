@@ -23,39 +23,34 @@
 
     --card-width: 272px;
 
-   width: var(--card-width);
-   margin: auto;
+    width: var(--card-width);
+    margin: auto;
 
-  @media screen and (min-width: 560px) {
-    --per-row: 2;
-     width: calc(var(--card-width) * var(--per-row) + var(--col-gap));
-  }
+    @media screen and (min-width: 560px) {
+      --per-row: 2;
+      width: calc(var(--card-width) * var(--per-row) + var(--col-gap));
+    }
 
-  @media screen and (min-width: 848px) {
-    --per-row: 3;
+    @media screen and (min-width: 848px) {
+      --per-row: 3;
 
-    width: calc(var(--card-width) * var(--per-row) + var(--col-gap) * 2);
-  }
+      width: calc(var(--card-width) * var(--per-row) + var(--col-gap) * 2);
+    }
 
-  @media screen and (min-width: 1136px) {
-    --per-row: 4;
-    width: calc(var(--card-width) * var(--per-row) + var(--col-gap) * 3);
-  }
+    @media screen and (min-width: 1136px) {
+      --per-row: 4;
+      width: calc(var(--card-width) * var(--per-row) + var(--col-gap) * 3);
+    }
   }
 
   &-list {
-    // --col-gap: 16px;
-    // display: flex;
-    // gap: var(--col-gap);
-    // transition: transform 250ms linear 0s;
-
     --per-row: 1;
-     width: var(--card-width);
+    width: var(--card-width);
 
-     display: flex;
-     gap: var(--col-gap);
-     justify-content: space-between;
-     padding: 0;
+    display: flex;
+    gap: var(--col-gap);
+    justify-content: space-between;
+    padding: 0;
 
     transition: transform 250ms linear 0s;
   }
@@ -90,5 +85,3 @@
 .arrow-btn:hover {
   border: 1px solid $gray-icons;
 }
-
-

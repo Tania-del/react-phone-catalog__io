@@ -1,0 +1,11 @@
+@import "colors";
+
+.card-small__wrapper {
+display: grid;
+}
+
+.card-small__img {
+  max-width: 66px;
+  max-height: 66px;
+  border: 1px $gray-icons;
+}

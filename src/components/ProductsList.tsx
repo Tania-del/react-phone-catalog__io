@@ -3,7 +3,6 @@ import {
   FC, useEffect, useState, useContext,
 } from 'react';
 import { useSearchParams } from 'react-router-dom';
-// import { useLocation, useNavigate } from 'react-router-dom';
 import { Product } from '../type/Product';
 import '../styles/ProductsList.scss';
 import { CustomSelect } from './CustomSelect';
@@ -12,6 +11,7 @@ import { MobileCard } from './MobileCard';
 import { SearchContext } from '../context/SearchContext';
 import { Breadcrumbs } from './Breadcrumbs';
 import { Pagination } from './Pagination';
+import { PhoneDetails } from './PhoneDetails';
 
 interface IProductsList {
   products: Product[];
@@ -29,6 +29,8 @@ export const ProductsList: FC<IProductsList> = ({
   const [searchParams, setSearchParams] = useSearchParams();
   const { inputValue } = useContext(SearchContext);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [inputErrorMessage, setInputErrorMessage] = useState<string>('');
+  const [selectedPhone, setSelectedPhone] = useState<Product | null>(null);
 
   const options1: Option[] = [
     { value: 'Newest', label: 'Newest' },
@@ -98,6 +100,12 @@ export const ProductsList: FC<IProductsList> = ({
     const input = typeof query === 'string' ? query : getQuery() ?? '';
 
     const filteredProductsByQuery = products.filter((product) => product.name.toLowerCase().includes(input));
+
+    if (!filteredProductsByQuery.length) {
+      setInputErrorMessage('No model was found for the specified parameters');
+    } else {
+      setInputErrorMessage('');
+    }
 
     return filteredProductsByQuery;
   };
@@ -222,47 +230,54 @@ export const ProductsList: FC<IProductsList> = ({
   return (
     <>
       <Breadcrumbs />
-      <h1 className="products-title">{title}</h1>
-      <p className="category-text">95 models</p>
-      <div className="products-type__wrapper">
-        <div>
-          <p className="filter-text">Sort by</p>
-          <div className="custom-selected">
-            <CustomSelect
-              options={options1}
-              defaultOption={searchParams.get('sort') || 'Newest'}
-              // eslint-disable-next-line max-len
-              onReturnType={(value) => handleFilterByType(value, 'sort')}
-            />
-          </div>
-        </div>
+      {selectedPhone ? <PhoneDetails phone={selectedPhone} /> : (
+        <>
+          <h1 className="products-title">{title}</h1>
+          <p className="category-text">95 models</p>
+          <div className="products-type__wrapper">
+            <div>
+              <p className="filter-text">Sort by</p>
+              <div className="custom-selected">
+                <CustomSelect
+                  options={options1}
+                  defaultOption={searchParams.get('sort') || 'Newest'}
+                  // eslint-disable-next-line max-len
+                  onReturnType={(value) => handleFilterByType(value, 'sort')}
+                />
+              </div>
+            </div>
 
-        <div>
-          <p className="filter-text">Items on page</p>
-          <div className="custom-selected">
-            <CustomSelect
-              options={options2}
-              defaultOption={searchParams.get('limit') || 16}
-              onReturnType={(value) => handleFilterByType(value, 'limit')}
-            />
+            <div>
+              <p className="filter-text">Items on page</p>
+              <div className="custom-selected">
+                <CustomSelect
+                  options={options2}
+                  defaultOption={searchParams.get('limit') || 16}
+                  onReturnType={(value) => handleFilterByType(value, 'limit')}
+                />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      <div className="products-wrapper">
-        <section className="products">
-          <ul className="products-list">
-            {productsToRender?.map((product) => (
-              <MobileCard item={product} key={product.id} />
-            ))}
-          </ul>
-        </section>
-      </div>
-      <Pagination
-        onPageChange={onPageChange}
-        total={pages}
-        currentPage={currentPage}
-      />
+          <div className="products-wrapper">
+            {inputErrorMessage && <p>{inputErrorMessage}</p>}
+            <section className="products">
+              <ul className="products-list">
+                {productsToRender?.map((product) => (
+                  <MobileCard item={product} key={product.id} onClick={() => setSelectedPhone(product)} />
+                ))}
+              </ul>
+            </section>
+          </div>
+          {!inputErrorMessage && (
+            <Pagination
+              onPageChange={onPageChange}
+              total={pages}
+              currentPage={currentPage}
+            />
+          )}
+        </>
+      )}
     </>
   );
 };

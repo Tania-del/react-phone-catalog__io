@@ -10,6 +10,7 @@ export const SearchContext = createContext<{
 // eslint-disable-next-line max-len
 export const SearchContextProvider = ({ children }: { children: ReactNode }) => {
   const [searchParams] = useSearchParams();
+
   const params = new URLSearchParams(searchParams);
   const [inputValue, setInputValue] = useState<string>(
     String(params.get('query') ?? ''),
