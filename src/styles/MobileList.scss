@@ -11,11 +11,7 @@
     color: $primary-color;
   }
 
-  &-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+
 
   &-container {
     overflow: hidden;
@@ -59,8 +55,13 @@
 .arrow-img__wrapper {
   display: flex;
   gap: 8px;
-  justify-content: end;
-  margin-bottom: 16px;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.phones-btn__wrapper {
+display: flex;
+gap: 16px;
 }
 
 .arrow-btn {

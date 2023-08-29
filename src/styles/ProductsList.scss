@@ -36,13 +36,12 @@
     max-width: 1136px;
     margin: 0 auto;
     display: grid;
-    gap: 16px;
+    gap: 40px 16px;
     justify-items: center;
   }
 }
 
 .mobile-card {
-  margin-bottom: 24px;
   align-items: center;
   justify-content: center;
 }

@@ -34,8 +34,8 @@ export const Banner = () => {
   return (
     <section className="banner-section">
       <div className="banner">
-        <button className="banner-arrow">
-          <SvgArrowLeft className="arrow-image" onClick={handlePrevBanner} />
+        <button className="banner-arrow" onClick={handlePrevBanner}>
+          <SvgArrowLeft className="arrow-image" />
         </button>
         <div className="banner-container">
           <img
@@ -44,8 +44,8 @@ export const Banner = () => {
             alt={`Image ${currentImageIndex}`}
           />
         </div>
-        <button className="banner-arrow">
-          <SvgArrowRight className="arrow-image" onClick={handleNextBanner} />
+        <button className="banner-arrow" onClick={handleNextBanner}>
+          <SvgArrowRight className="arrow-image" />
         </button>
       </div>
       <div className="banner-dots">

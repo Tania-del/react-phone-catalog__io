@@ -20,21 +20,24 @@ export const MobileList: FC<IMobileList> = ({
 }) => {
   return (
     <section className="phones">
-      <div className="phones-wrapper">
+      {/* <div className="phones-wrapper">
         <h1 className="phones-text">{title}</h1>
-      </div>
+      </div> */}
       <PhonesSlider
         items={products}
         spaceBetween={16}
         numberOfVisibleItems={4}
         topLineButtons={(prevButton, nextButton) => (
           <div className="arrow-img__wrapper">
-            <button type="button" onClick={prevButton} className="arrow-btn">
-              <SvgArrowLeft className="arrow-image" />
-            </button>
-            <button type="button" onClick={nextButton} className="arrow-btn">
-              <SvgArrowRight className="arrow-image" />
-            </button>
+            <h1 className="phones-text">{title}</h1>
+            <div className="phones-btn__wrapper">
+              <button type="button" onClick={prevButton} className="arrow-btn">
+                <SvgArrowLeft className="arrow-image" />
+              </button>
+              <button type="button" onClick={nextButton} className="arrow-btn">
+                <SvgArrowRight className="arrow-image" />
+              </button>
+            </div>
           </div>
         )}
       >

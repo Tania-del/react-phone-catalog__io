@@ -1,11 +1,173 @@
 @import "colors";
+@import "fonts";
+
+.product-card__container {
+  display: flex;
+  margin-top: 40px;
+  gap: 27px;
+}
 
 .card-small__wrapper {
-display: grid;
+  display: grid;
+  max-height: 80px;
+  grid-row-gap: 16px;
 }
 
 .card-small__img {
   max-width: 66px;
   max-height: 66px;
-  border: 1px $gray-icons;
+
+}
+.card-img__btn {
+  border: 1px solid $gray-icons;
+  width: 80px;
+  height: 80px;
+  background-color: $white;
+
+  &:hover {
+    border: 1px solid $primary-color;
+  }
+}
+
+.selected-img__container {
+  width: 464px;
+  height: 464px;
+  padding: 11px;
+  display: flex;
+  justify-content: center;
+}
+
+.selected-img__wrapper {
+  display: flex;
+  gap: 75px;
+}
+
+.selected-image {
+    max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.button-color {
+  border-radius: 50%;
+  border: 1px solid $gray-icons;
+  width: 25px;
+  height: 25px;
+  padding: 3px;
+
+  &:hover {
+     border: 1px solid $primary-color;
+  }
+}
+
+.button-wrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.card-underline {
+  width: 320px;
+  padding: 0;
+  margin-bottom: 24px;
+  margin-top: 24px;
+}
+
+.capacity-button {
+  background-color: $white;
+  border: 1px solid $gray-icons;
+  padding: 6px 8px;
+
+  color: $primary-color;
+  text-align: center;
+  font-family: "Mont", sans-serif;
+  font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 21px;
+
+&:hover {
+  color: $white;
+  background-color: $primary-color;
+}
+}
+
+.card-price__wrapper {
+display: flex;
+gap: 8px;
+padding-top: 8px;
+}
+
+.card-button {
+  width: 263px;
+}
+
+.card-buttons__wrapper {
+  gap: 8px;
+  justify-content: inherit;
+  padding-bottom: 16px;
+}
+
+.details-wrapper {
+margin-top: 81px;
+margin-bottom: 80px;
+display: flex;
+gap: 64px;
+}
+
+.about {
+  max-width: 559px;
+  &-title {
+    font-family: "Mont", sans-serif;
+    font-size: 22px;
+font-style: normal;
+font-weight: 700;
+line-height: 140%;
+padding-bottom: 8px;
+
+&__description {
+  font-family: "Mont", sans-serif;
+font-size: 20px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+color: $primary-color;
+margin-top: 32px;
+}
+  }
+
+  &-text {
+    font-family: "Mont", sans-serif;
+    font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 21px;
+color: $gray-secondary;
+margin-top: 16px;
+  }
+
+  &-underline {
+    width: 100%;
+  }
+
+  &-specs {
+    margin-top: 0;
+    padding-bottom: 8px;
+  }
+}
+
+.specs {
+  width: 512px;
+
+  &-wrapper{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    gap: 8px;
+  }
+
+  &-title {
+    color: $primary-color;
+    margin-top: 0;
+    padding-bottom: 8px;
+  }
 }
