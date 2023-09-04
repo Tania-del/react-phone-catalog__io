@@ -7,6 +7,7 @@ import '../styles/MobileList.scss';
 import { Product } from '../type/Product';
 import { MobileCard } from './MobileCard';
 import { PhonesSlider } from './PhonesSlider';
+import { useCardClick } from '../helpers/useCardClick';
 
 interface IMobileList {
   products: Product[];
@@ -18,11 +19,11 @@ export const MobileList: FC<IMobileList> = ({
   products = [],
   title = 'title',
 }) => {
+  const { handleCardClick } = useCardClick();
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+
   return (
     <section className="phones">
-      {/* <div className="phones-wrapper">
-        <h1 className="phones-text">{title}</h1>
-      </div> */}
       <PhonesSlider
         items={products}
         spaceBetween={16}
@@ -43,7 +44,7 @@ export const MobileList: FC<IMobileList> = ({
       >
         {(item) => (
           <div className="card">
-            <MobileCard item={item} />
+            <MobileCard item={item} onClick={() => handleCardClick(item.phoneId)} />
           </div>
         )}
       </PhonesSlider>

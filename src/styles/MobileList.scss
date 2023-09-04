@@ -11,8 +11,6 @@
     color: $primary-color;
   }
 
-
-
   &-container {
     overflow: hidden;
     --col-gap: 16px;
@@ -60,8 +58,8 @@
 }
 
 .phones-btn__wrapper {
-display: flex;
-gap: 16px;
+  display: flex;
+  gap: 16px;
 }
 
 .arrow-btn {

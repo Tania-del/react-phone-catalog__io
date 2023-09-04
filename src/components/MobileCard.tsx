@@ -35,7 +35,7 @@ export const MobileCard: FC<IMobileCard> = ({ item, onClick }) => {
       >
 
         <li>
-          <img className="card-img" src={image} alt="img" />
+          <img className="card-img" src={`/${image}`} alt="img" />
           <div className="card-container">
             <div>
               <h3 className="card-title">{name}</h3>
@@ -57,7 +57,7 @@ export const MobileCard: FC<IMobileCard> = ({ item, onClick }) => {
                 <p className="description-text">{ram}</p>
               </div>
             </div>
-            <Button />
+            <Button item={item} />
           </div>
         </li>
       </div>

@@ -1,28 +1,75 @@
 @import "colors";
 @import "fonts";
 
-.breadcrumbs {
-  padding: 24px 0 40px;
-  display: inline-flex;
-  gap: 8px;
+// .breadcrumbs {
+//   padding: 24px 0 40px;
+//   display: inline-flex;
+//   gap: 8px;
 
-  &-arrow__right {
-    fill: $gray-icons;
-  }
+//   &-arrow__right {
+//     fill: $gray-icons;
+//   }
+// }
+
+// .breadcrumb {
+//   &-active {
+//     color: $primary-color;
+//     text-decoration: none;
+//     font-family: "Mont", sans-serif;
+//     font-size: 12px;
+//     font-style: normal;
+//     font-weight: 600;
+//     line-height: 1.5;
+//   }
+
+//   &-not-active {
+//     color: $gray-secondary;
+//   }
+// }
+
+.breadcrumbs {
+display: inline-flex;
+gap: 8px;
+align-items: center;
+  padding: 24px 0 40px;
+
+&-text {
+  color: $primary-color;
+font-size: 12px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+font-family: "Mont", sans-serif;
+text-decoration: none;
+
+
 }
 
-.breadcrumb {
-  &-active {
-    color: $primary-color;
-    text-decoration: none;
-    font-family: "Mont", sans-serif;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 1.5;
-  }
+&-svg {
+  fill: $gray-icons;
+}
 
-  &-not-active {
-    color: $gray-secondary;
-  }
+&-home {
+  fill: $primary-color;
+  padding-top: 3px;
+
+}
+
+&-active {
+color: $gray-secondary;
+}
+}
+
+.breadcrumbs-nav {
+padding: 0 0 16px;
+}
+
+.breadcrumbs-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.breadcrumbs-back svg {
+fill: $primary-color;
 }

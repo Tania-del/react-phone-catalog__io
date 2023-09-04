@@ -9,9 +9,10 @@ import { CustomSelect } from './CustomSelect';
 import { Option } from '../type/Option';
 import { MobileCard } from './MobileCard';
 import { SearchContext } from '../context/SearchContext';
-import { Breadcrumbs } from './Breadcrumbs';
 import { Pagination } from './Pagination';
 import { PhoneDetails } from './PhoneDetails';
+import { useCardClick } from '../helpers/useCardClick';
+
 
 interface IProductsList {
   products: Product[];
@@ -30,7 +31,9 @@ export const ProductsList: FC<IProductsList> = ({
   const { inputValue } = useContext(SearchContext);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [inputErrorMessage, setInputErrorMessage] = useState<string>('');
-  const [selectedPhone, setSelectedPhone] = useState<Product | null>(null);
+  const [selectedPhone] = useState<Product | null>(null);
+
+  const { handleCardClick } = useCardClick();
 
   const options1: Option[] = [
     { value: 'Newest', label: 'Newest' },
@@ -180,7 +183,6 @@ export const ProductsList: FC<IProductsList> = ({
         perPage * key,
       );
 
-      // setCurrentPage(1)
       setProductsToRender(slicedByLimit);
     }
   };
@@ -229,8 +231,8 @@ export const ProductsList: FC<IProductsList> = ({
 
   return (
     <>
-      <Breadcrumbs />
-      {selectedPhone ? <PhoneDetails phone={selectedPhone} /> : (
+      {/* <Breadcrumbs /> */}
+      {selectedPhone ? <PhoneDetails /> : (
         <>
           <h1 className="products-title">{title}</h1>
           <p className="category-text">95 models</p>
@@ -264,7 +266,11 @@ export const ProductsList: FC<IProductsList> = ({
             <section className="products">
               <ul className="products-list">
                 {productsToRender?.map((product) => (
-                  <MobileCard item={product} key={product.id} onClick={() => setSelectedPhone(product)} />
+                  <MobileCard
+                    item={product}
+                    key={product.id}
+                    onClick={() => handleCardClick(product.phoneId)}
+                  />
                 ))}
               </ul>
             </section>

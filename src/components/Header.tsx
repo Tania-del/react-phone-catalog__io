@@ -7,7 +7,8 @@ import { SearchBar } from './SearchBar';
 
 export default function Header() {
   const location = useLocation();
-  const searchShowBar = location.pathname !== '/';
+
+  const searchShowBar = location.pathname === '/phones';
 
   return (
     <header className="header">
@@ -16,8 +17,6 @@ export default function Header() {
         <nav className="nav">
           <NavLink className="nav-item" to="/">Home</NavLink>
           <NavLink className="nav-item" to="/phones">Phones</NavLink>
-          <NavLink className="nav-item" to="/tablets">Tablets</NavLink>
-          <NavLink className="nav-item" to="/accessories">Accessories</NavLink>
         </nav>
       </div>
 

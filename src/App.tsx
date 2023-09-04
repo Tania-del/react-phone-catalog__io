@@ -4,6 +4,7 @@ import Header from './components/Header';
 import { HomePage } from './pages/HomePage';
 import { PhonesPage } from './pages/PhonesPage';
 import { SearchContextProvider } from './context/SearchContext';
+import { PhoneDetails } from './components/PhoneDetails';
 
 export const App = () => {
   return (
@@ -13,9 +14,7 @@ export const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/phones" element={<PhonesPage />} />
-          <Route path="/tablets" element={<h1>Tablets page</h1>} />
-          <Route path="/accessories" element={<h1>Accessories page</h1>} />
-          <Route path="/product/:productId" />
+          <Route path="/phones/:phoneId" element={<PhoneDetails />} />
         </Routes>
       </SearchContextProvider>
     </div>
