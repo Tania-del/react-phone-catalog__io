@@ -28,40 +28,37 @@
 // }
 
 .breadcrumbs {
-display: inline-flex;
-gap: 8px;
-align-items: center;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
   padding: 24px 0 40px;
 
-&-text {
-  color: $primary-color;
-font-size: 12px;
-font-style: normal;
-font-weight: 600;
-line-height: normal;
-font-family: "Mont", sans-serif;
-text-decoration: none;
+  &-text {
+    color: $primary-color;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    font-family: "Mont", sans-serif;
+    text-decoration: none;
+  }
 
+  &-svg {
+    fill: $gray-icons;
+  }
 
-}
+  &-home {
+    fill: $primary-color;
+    padding-top: 3px;
+  }
 
-&-svg {
-  fill: $gray-icons;
-}
-
-&-home {
-  fill: $primary-color;
-  padding-top: 3px;
-
-}
-
-&-active {
-color: $gray-secondary;
-}
+  &-active {
+    color: $gray-secondary;
+  }
 }
 
 .breadcrumbs-nav {
-padding: 0 0 16px;
+  padding: 0 0 16px;
 }
 
 .breadcrumbs-back {
@@ -71,5 +68,5 @@ padding: 0 0 16px;
 }
 
 .breadcrumbs-back svg {
-fill: $primary-color;
+  fill: $primary-color;
 }

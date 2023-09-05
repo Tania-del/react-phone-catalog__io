@@ -13,7 +13,6 @@ import { Pagination } from './Pagination';
 import { PhoneDetails } from './PhoneDetails';
 import { useCardClick } from '../helpers/useCardClick';
 
-
 interface IProductsList {
   products: Product[];
   title: string;

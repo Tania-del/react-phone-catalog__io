@@ -1,4 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom';
+import { useFavouriteClick } from '../helpers/useFavouriteClick';
 import SvgHeart from '../icons/Heart';
 import SvgLogo from '../icons/Logo';
 import SvgShoppingBag from '../icons/ShoppingBag';
@@ -8,7 +9,11 @@ import { SearchBar } from './SearchBar';
 export default function Header() {
   const location = useLocation();
 
-  const searchShowBar = location.pathname === '/phones';
+  const searchShowBar = location.pathname === '/phones'
+    || location.pathname === '/favourites';
+  const { getFavourites } = useFavouriteClick();
+
+  const favourites = getFavourites();
 
   return (
     <header className="header">
@@ -23,12 +28,22 @@ export default function Header() {
       <div className="nav-wrapper">
         {searchShowBar && <SearchBar />}
         <div>
-          <button type="button" className="navigation-btn">
+          <NavLink
+            type="button"
+            className="navigation-btn navigation-link"
+            to="/favourites"
+          >
             <SvgHeart />
-          </button>
-          <button type="button" className="navigation-btn">
+            {favourites.length > 0
+              && <span className="count">{favourites.length}</span>}
+          </NavLink>
+          <NavLink
+            type="button"
+            className="navigation-btn navigation-link"
+            to="#"
+          >
             <SvgShoppingBag />
-          </button>
+          </NavLink>
         </div>
       </div>
     </header>

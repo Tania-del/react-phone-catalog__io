@@ -5,6 +5,7 @@ import { HomePage } from './pages/HomePage';
 import { PhonesPage } from './pages/PhonesPage';
 import { SearchContextProvider } from './context/SearchContext';
 import { PhoneDetails } from './components/PhoneDetails';
+import { FavouritesPage } from './pages/FavouritesPage';
 
 export const App = () => {
   return (
@@ -15,6 +16,7 @@ export const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/phones" element={<PhonesPage />} />
           <Route path="/phones/:phoneId" element={<PhoneDetails />} />
+          <Route path="/favourites" element={<FavouritesPage />} />
         </Routes>
       </SearchContextProvider>
     </div>
