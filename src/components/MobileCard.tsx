@@ -1,4 +1,5 @@
-import { FC } from 'react';
+import { useContext, FC } from 'react';
+import { FavouriteContext } from '../context/FavouriteContext';
 import '../styles/MobileCard.scss';
 import { Product } from '../type/Product';
 import { Button } from './Button';
@@ -20,11 +21,13 @@ export const MobileCard: FC<IMobileCard> = ({ item, onClick }) => {
     fullPrice,
   } = item;
 
+  const { addToFavourite } = useContext(FavouriteContext);
+
   return (
     <>
       <div
         className="card mobile-card"
-        onClick={onClick}
+        onClick={() => onClick?.()}
         role="button"
         onKeyDown={(event) => {
           if (event.key === 'Enter') {
@@ -57,7 +60,11 @@ export const MobileCard: FC<IMobileCard> = ({ item, onClick }) => {
                 <p className="description-text">{ram}</p>
               </div>
             </div>
-            <Button item={item} />
+            <Button
+              item={item}
+              // eslint-disable-next-line max-len
+              onFavouriteClick={() => addToFavourite('phoneId', item.phoneId)}
+            />
           </div>
         </li>
       </div>

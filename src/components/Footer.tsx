@@ -1,10 +1,11 @@
+import { scrollToTop } from '../helpers/scrollToTop';
 import SvgArrowUp from '../icons/ArrowUp';
 import SvgLogo from '../icons/Logo';
 import '../styles/Footer.scss';
-import { scrollToTop } from '../helpers/scrollToTop';
+// import { scrollToTop } from '../helpers/scrollToTop';
 
 export const Footer = () => {
-  scrollToTop();
+  // scrollToTop();
 
   return (
     <footer className="footer">
@@ -20,7 +21,7 @@ export const Footer = () => {
           type="button"
           data-cy="backButton"
           className="arrow-btn"
-          onClick={scrollToTop}
+          onClick={() => scrollToTop()}
         >
           <SvgArrowUp />
         </button>

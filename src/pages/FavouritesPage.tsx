@@ -23,8 +23,8 @@ export const FavouritesPage = () => {
           ]}
         />
         <Favourites />
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 };

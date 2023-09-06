@@ -1,5 +1,6 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import { useFavouriteClick } from '../helpers/useFavouriteClick';
+import { useContext } from 'react';
+import { FavouriteContext } from '../context/FavouriteContext';
 import SvgHeart from '../icons/Heart';
 import SvgLogo from '../icons/Logo';
 import SvgShoppingBag from '../icons/ShoppingBag';
@@ -11,9 +12,7 @@ export default function Header() {
 
   const searchShowBar = location.pathname === '/phones'
     || location.pathname === '/favourites';
-  const { getFavourites } = useFavouriteClick();
-
-  const favourites = getFavourites();
+  const { favourites } = useContext(FavouriteContext);
 
   return (
     <header className="header">

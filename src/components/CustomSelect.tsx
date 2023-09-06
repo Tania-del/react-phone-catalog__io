@@ -11,7 +11,6 @@ import { Option } from '../type/Option';
 interface ICustomSelector {
   options: Option[];
   defaultOption: string | number;
-
   // eslint-disable-next-line max-len
   onReturnType?: ((type?: string, value?: string) => void)
 }
@@ -26,8 +25,6 @@ export const CustomSelect = ({
   const [selectedOption, setSelectedOption] = useState(defaultOption);
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const selectRef = useRef<HTMLDivElement>(null);
-
-  // console.log(selectedOption);
 
   const toogleSelect = () => {
     setIsOpen(!isOpen);

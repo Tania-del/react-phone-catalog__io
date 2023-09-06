@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import { useFavouriteClick } from '../helpers/useFavouriteClick';
+import { FC, useContext } from 'react';
+import { FavouriteContext } from '../context/FavouriteContext';
 import SvgHeart from '../icons/Heart';
 import SvgHeartRed from '../icons/HeartRed';
 import '../styles/Button.scss';
@@ -7,10 +7,11 @@ import { Product } from '../type/Product';
 
 interface IButton {
   item: Product;
+  onFavouriteClick: () => void;
 }
 
-export const Button: FC<IButton> = ({ item }) => {
-  const { handleFavouriteClick, isFavourite } = useFavouriteClick();
+export const Button: FC<IButton> = ({ item, onFavouriteClick }) => {
+  const { isFavourite } = useContext(FavouriteContext);
 
   return (
     <div className="buttons-wrapper">
@@ -21,9 +22,11 @@ export const Button: FC<IButton> = ({ item }) => {
       <button
         type="button"
         className="button-favourites"
-        onClick={() => handleFavouriteClick(
-          'phoneId', item.phoneId,
-        )}
+        onClick={(e) => {
+          e.stopPropagation();
+          onFavouriteClick();
+          // console.log(isFavourite(item.phoneId), favouri);
+        }}
       >
         {isFavourite(item.phoneId) ? <SvgHeartRed /> : <SvgHeart /> }
       </button>
