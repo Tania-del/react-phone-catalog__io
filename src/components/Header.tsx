@@ -39,7 +39,7 @@ export default function Header() {
           <NavLink
             type="button"
             className="navigation-btn navigation-link"
-            to="#"
+            to="/cart"
           >
             <SvgShoppingBag />
           </NavLink>

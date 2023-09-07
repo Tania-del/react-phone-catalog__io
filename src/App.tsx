@@ -7,20 +7,28 @@ import { SearchContextProvider } from './context/SearchContext';
 import { PhoneDetails } from './components/PhoneDetails';
 import { FavouritesPage } from './pages/FavouritesPage';
 import { FavouriteProvider } from './context/FavouriteContext';
+import { ErrorMessageProvider } from './context/ErrorMessageContext';
+import { CartPage } from './pages/CartPage';
+import { CartProvider } from './context/CartContext';
 
 export const App = () => {
   return (
     <div className="App">
       <FavouriteProvider>
-        <SearchContextProvider>
-          <Header />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/phones" element={<PhonesPage />} />
-            <Route path="/phones/:phoneId" element={<PhoneDetails />} />
-            <Route path="/favourites" element={<FavouritesPage />} />
-          </Routes>
-        </SearchContextProvider>
+        <CartProvider>
+          <SearchContextProvider>
+            <ErrorMessageProvider>
+              <Header />
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/phones" element={<PhonesPage />} />
+                <Route path="/phones/:phoneId" element={<PhoneDetails />} />
+                <Route path="/favourites" element={<FavouritesPage />} />
+                <Route path="/cart" element={<CartPage />} />
+              </Routes>
+            </ErrorMessageProvider>
+          </SearchContextProvider>
+        </CartProvider>
       </FavouriteProvider>
     </div>
   );

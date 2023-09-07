@@ -3,7 +3,6 @@ import {
 } from 'react';
 import {
   getLocalStorageItem,
-  // removeLocalStorageItem,
   setLocalStorageItem,
 } from '../helpers/LocalStorageState';
 
@@ -13,7 +12,6 @@ interface IFavouriteContext {
   addToFavourite: (key: string, itemId: string) => void;
 }
 
-// We should put here some default values to not allow the browser send errors or program to fail;
 export const FavouriteContext = createContext<IFavouriteContext>({
   favourites: [],
   isFavourite: () => false,
@@ -21,15 +19,11 @@ export const FavouriteContext = createContext<IFavouriteContext>({
 });
 
 interface IFavouriteProvider {
-  children: ReactNode
+  children: ReactNode,
 }
 
-// Here we give it a name as FavoriteProvider because we select from FavoriteContext
-// field Provider than make us choose the name for the component FavoriteProvider
-// the name of it is up to you
-
 export const FavouriteProvider = ({ children }: IFavouriteProvider) => {
-  console.log(FavouriteContext)
+  // console.log(FavouriteContext);
   const getFavourites = () => getLocalStorageItem('phoneId') || [];
   const [favourites, setFavourites] = useState<string[]>(getFavourites());
 
@@ -44,7 +38,6 @@ export const FavouriteProvider = ({ children }: IFavouriteProvider) => {
       setFavourites(updatedFavorites);
       setLocalStorageItem(key, updatedFavorites);
     } else {
-      // eslint-disable-next-line max-len
       const updatedFavorites = favourites.filter(
         (current) => current !== itemId,
       );

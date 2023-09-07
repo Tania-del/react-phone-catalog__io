@@ -8,6 +8,7 @@
   background-color: $primary-color;
   border: none;
 
+
   &-title {
     text-align: center;
     font-family: "Mont", sans-serif;
@@ -16,6 +17,11 @@
     font-weight: 600;
     line-height: 21px;
     color: $white;
+  }
+
+  &-cart {
+    background-color: $white;
+    border: 1px solid $elements-color;
   }
 
   &-favourites {
@@ -33,4 +39,11 @@
   padding: 16px 0 24px;
   display: flex;
   justify-content: space-between;
+}
+
+.cart-title {
+color: $green;
+margin: 0 auto;
+width: 100px;
+text-align: center;
 }

@@ -12,6 +12,8 @@ import { SearchContext } from '../context/SearchContext';
 import { Pagination } from './Pagination';
 import { PhoneDetails } from './PhoneDetails';
 import { useCardClick } from '../helpers/useCardClick';
+import { filterByQuery } from '../utils/filterUtils';
+import { ErrorMessageContext } from '../context/ErrorMessageContext';
 
 interface IProductsList {
   products: Product[];
@@ -29,10 +31,11 @@ export const ProductsList: FC<IProductsList> = ({
   const [searchParams, setSearchParams] = useSearchParams();
   const { inputValue } = useContext(SearchContext);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [inputErrorMessage, setInputErrorMessage] = useState<string>('');
   const [selectedPhone] = useState<Product | null>(null);
+  const { inputErrorMessage } = useContext(ErrorMessageContext);
 
   const { handleCardClick } = useCardClick();
+  const { setInputErrorMessage } = useContext(ErrorMessageContext);
 
   const options1: Option[] = [
     { value: 'Newest', label: 'Newest' },
@@ -85,31 +88,10 @@ export const ProductsList: FC<IProductsList> = ({
     return params.get('limit') ?? '';
   };
 
-  const getQuery = () => {
-    const params = new URLSearchParams(document.location.search);
-
-    return params.get('query' ?? '');
-  };
-
   const getPage = () => {
     const params = new URLSearchParams(document.location.search);
 
     return params.get('page') ?? 1;
-  };
-
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  const filterByQuery = (products: Product[], query?: string): Product[] => {
-    const input = typeof query === 'string' ? query : getQuery() ?? '';
-
-    const filteredProductsByQuery = products.filter((product) => product.name.toLowerCase().includes(input));
-
-    if (!filteredProductsByQuery.length) {
-      setInputErrorMessage('No model was found for the specified parameters');
-    } else {
-      setInputErrorMessage('');
-    }
-
-    return filteredProductsByQuery;
   };
 
   // eslint-disable-next-line @typescript-eslint/no-inferrable-types
@@ -202,7 +184,7 @@ export const ProductsList: FC<IProductsList> = ({
   };
 
   useEffect(() => {
-    const filteredByQuery = filterByQuery(allwaysFullProducts, inputValue);
+    const filteredByQuery = filterByQuery(allwaysFullProducts, inputValue, setInputErrorMessage);
     const sortedByQuery = sortByQuery(filteredByQuery);
     const slicedByLimit = limitByQuery(sortedByQuery);
 
@@ -230,7 +212,6 @@ export const ProductsList: FC<IProductsList> = ({
 
   return (
     <>
-      {/* <Breadcrumbs /> */}
       {selectedPhone ? <PhoneDetails /> : (
         <>
           <h1 className="products-title">{title}</h1>

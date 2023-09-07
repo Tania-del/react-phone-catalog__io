@@ -1,4 +1,5 @@
 import { useContext, FC } from 'react';
+import { CartContext } from '../context/CartContext';
 import { FavouriteContext } from '../context/FavouriteContext';
 import '../styles/MobileCard.scss';
 import { Product } from '../type/Product';
@@ -22,6 +23,7 @@ export const MobileCard: FC<IMobileCard> = ({ item, onClick }) => {
   } = item;
 
   const { addToFavourite } = useContext(FavouriteContext);
+  const { addToCart } = useContext(CartContext);
 
   return (
     <>
@@ -63,6 +65,7 @@ export const MobileCard: FC<IMobileCard> = ({ item, onClick }) => {
             <Button
               item={item}
               // eslint-disable-next-line max-len
+              onAddToCartClick={() => addToCart('cartItem', item.phoneId)}
               onFavouriteClick={() => addToFavourite('phoneId', item.phoneId)}
             />
           </div>

@@ -4,15 +4,26 @@ import { MobileCard } from './MobileCard';
 import { useCardClick } from '../helpers/useCardClick';
 import '../styles/Favourites.scss';
 import { FavouriteContext } from '../context/FavouriteContext';
+import { filterByQuery } from '../utils/filterUtils';
+import { SearchContext } from '../context/SearchContext';
+import { ErrorMessageContext } from '../context/ErrorMessageContext';
 
 export const Favourites = () => {
   const { favourites } = useContext(FavouriteContext);
   const { handleCardClick } = useCardClick();
+  const { inputValue } = useContext(SearchContext);
+  const { inputErrorMessage, setInputErrorMessage }
+    = useContext(ErrorMessageContext);
 
-  const filteredProducts = useMemo(
-    () => products.filter((product) => favourites.includes(product.phoneId)),
-    [favourites],
-  );
+  const filteredProducts = useMemo(() => {
+    const filteredByFavourites = products.filter(
+      (product) => favourites.includes(product.phoneId),
+    );
+
+    return filterByQuery(
+      filteredByFavourites, inputValue, setInputErrorMessage,
+    );
+  }, [favourites, inputValue]);
 
   return (
     <>
@@ -24,6 +35,7 @@ export const Favourites = () => {
         {`${favourites.length} items`}
       </p>
       <div className="favourites-wrapper">
+        {inputErrorMessage && <p>{inputErrorMessage}</p>}
         <div className="products-wrapper">
           <section className="products">
             <ul className="products-list">
