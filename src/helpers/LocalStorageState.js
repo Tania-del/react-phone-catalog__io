@@ -8,6 +8,6 @@ export const getLocalStorageItem = (key) => {
   return item ? JSON.parse(item) : null;
 };
 
-export const removeLocalStorageItem = (key) => {
-  localStorage.removeItem(key);
+export const removeLocalStorageItem = (key, value) => {
+  localStorage.removeItem(key, value);
 };

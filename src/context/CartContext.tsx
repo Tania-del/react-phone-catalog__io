@@ -1,4 +1,5 @@
 import { useState, createContext, ReactNode } from 'react';
+import { LOCALSTORAGE_KEYS } from '../constants/comman';
 import {
   getLocalStorageItem,
   setLocalStorageItem,
@@ -7,7 +8,7 @@ import {
 interface ICartContext {
   cartItems: string[];
   isCartItem: (itemId: string) => boolean;
-  addToCart: (key: string, itemId: string) => void;
+  addToCart: (itemId: string) => void;
 }
 interface ICartProvider {
   children: ReactNode;
@@ -20,7 +21,9 @@ export const CartContext = createContext<ICartContext>({
 });
 
 export const CartProvider = ({ children }: ICartProvider) => {
-  const getCartItems = () => getLocalStorageItem('cartItem') || [];
+  const getCartItems = () => getLocalStorageItem(
+    LOCALSTORAGE_KEYS.cartItems,
+  ) ?? [];
 
   const [cartItems, setCartItems] = useState<string[]>(getCartItems());
 
@@ -28,19 +31,25 @@ export const CartProvider = ({ children }: ICartProvider) => {
     return cartItems?.includes(itemId);
   };
 
-  const addToCart = (key: string, itemId: string) => {
+  const addToCart = (itemId: string) => {
     if (!isCartItem(itemId)) {
       const updatedCartItems = [...cartItems, itemId];
 
       setCartItems(updatedCartItems);
-      setLocalStorageItem(key, updatedCartItems);
+      setLocalStorageItem(LOCALSTORAGE_KEYS.cartItems, updatedCartItems);
     } else {
-      const updatedCartItems = cartItems.filter(
+      const updatedCartItems = cartItems?.filter(
         (current) => current !== itemId,
       );
 
       setCartItems(updatedCartItems);
-      setLocalStorageItem(key, updatedCartItems);
+      setLocalStorageItem(LOCALSTORAGE_KEYS.cartItems, updatedCartItems);
+
+      const quantity = getLocalStorageItem(LOCALSTORAGE_KEYS.quantity) ?? {};
+
+      delete quantity[itemId];
+
+      setLocalStorageItem(LOCALSTORAGE_KEYS.quantity, quantity);
     }
   };
 

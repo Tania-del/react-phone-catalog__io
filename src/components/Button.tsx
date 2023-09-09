@@ -12,7 +12,6 @@ interface IButton {
   onFavouriteClick: () => void;
   onAddToCartClick: () => void;
 }
-
 export const Button: FC<IButton> = ({
   item, onFavouriteClick, onAddToCartClick,
 }) => {

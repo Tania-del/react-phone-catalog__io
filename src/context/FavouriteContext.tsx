@@ -1,6 +1,7 @@
 import {
   createContext, ReactNode, useState,
 } from 'react';
+import { LOCALSTORAGE_KEYS } from '../constants/comman';
 import {
   getLocalStorageItem,
   setLocalStorageItem,
@@ -24,7 +25,8 @@ interface IFavouriteProvider {
 
 export const FavouriteProvider = ({ children }: IFavouriteProvider) => {
   // console.log(FavouriteContext);
-  const getFavourites = () => getLocalStorageItem('phoneId') || [];
+  // eslint-disable-next-line max-len
+  const getFavourites = () => getLocalStorageItem(LOCALSTORAGE_KEYS.phoneId) ?? [];
   const [favourites, setFavourites] = useState<string[]>(getFavourites());
 
   const isFavourite = (itemId: string) => {

@@ -1,4 +1,4 @@
-import { useMemo, useContext } from 'react';
+import { useContext } from 'react';
 import products from '../products.json';
 import { MobileCard } from './MobileCard';
 import { useCardClick } from '../helpers/useCardClick';
@@ -7,6 +7,7 @@ import { FavouriteContext } from '../context/FavouriteContext';
 import { filterByQuery } from '../utils/filterUtils';
 import { SearchContext } from '../context/SearchContext';
 import { ErrorMessageContext } from '../context/ErrorMessageContext';
+import { Product } from '../type/Product';
 
 export const Favourites = () => {
   const { favourites } = useContext(FavouriteContext);
@@ -15,23 +16,16 @@ export const Favourites = () => {
   const { inputErrorMessage, setInputErrorMessage }
     = useContext(ErrorMessageContext);
 
-  const filteredProducts = useMemo(() => {
-    const filteredByFavourites = products.filter(
-      (product) => favourites.includes(product.phoneId),
-    );
+  const filteredByFavourites = products.filter(
+    (product) => favourites.includes(product.phoneId),
+  );
 
-    return filterByQuery(
-      filteredByFavourites, inputValue, setInputErrorMessage,
-    );
-  }, [favourites, inputValue]);
+  filterByQuery(filteredByFavourites, inputValue, setInputErrorMessage);
 
   return (
     <>
       <h1 className="phones-text">Favourites</h1>
-      <p
-        className="about-text"
-        style={{ margin: '8px 0 40px' }}
-      >
+      <p className="about-text" style={{ margin: '8px 0 40px' }}>
         {`${favourites.length} items`}
       </p>
       <div className="favourites-wrapper">
@@ -39,7 +33,7 @@ export const Favourites = () => {
         <div className="products-wrapper">
           <section className="products">
             <ul className="products-list">
-              {filteredProducts?.map((product) => (
+              {filteredByFavourites?.map((product: Product) => (
                 <MobileCard
                   item={product}
                   key={product.id}

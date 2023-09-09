@@ -10,7 +10,6 @@ const SvgPlus = (props: SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <path
-      fill="#313237"
       fillRule="evenodd"
       // eslint-disable-next-line max-len
       d="M8.666 3.333a.667.667 0 1 0-1.333 0v4h-4a.667.667 0 0 0 0 1.334h4v4a.667.667 0 0 0 1.333 0v-4h4a.667.667 0 1 0 0-1.334h-4v-4Z"
