@@ -4,16 +4,20 @@ import { CartContext } from '../context/CartContext';
 import { FavouriteContext } from '../context/FavouriteContext';
 import SvgHeart from '../icons/Heart';
 import SvgHeartRed from '../icons/HeartRed';
-import '../styles/Button.scss';
-import { Product } from '../type/Product';
+import '../styles/AddButtons.scss';
 
-interface IButton {
-  item: Product;
+interface IAddButtons {
+  id: string
   onFavouriteClick: () => void;
   onAddToCartClick: () => void;
+  // eslint-disable-next-line react/require-default-props
+  customStyle?: string;
 }
-export const Button: FC<IButton> = ({
-  item, onFavouriteClick, onAddToCartClick,
+export const AddButtons: FC<IAddButtons> = ({
+  id,
+  onFavouriteClick,
+  onAddToCartClick,
+  customStyle = '',
 }) => {
   const { isFavourite } = useContext(FavouriteContext);
   const { isCartItem } = useContext(CartContext);
@@ -22,16 +26,21 @@ export const Button: FC<IButton> = ({
     <div className="buttons-wrapper">
       <button
         type="button"
-        className={clsx('button', { 'button-cart': isCartItem(item.phoneId) })}
+        className={clsx('button', customStyle, {
+          'button-cart': isCartItem(id),
+        })}
         onClick={(e) => {
           e.stopPropagation();
           onAddToCartClick();
         }}
       >
-        <p className={clsx('button-title',
-          { 'cart-title': isCartItem(item.phoneId) })}
+        <p
+          className={clsx('button-title', {
+            'cart-title': isCartItem(id),
+          })}
         >
-          {isCartItem(item.phoneId) ? 'Added to cart' : 'Add to cart'}
+          {isCartItem(id)
+            ? 'Added to cart' : 'Add to cart'}
         </p>
       </button>
 
@@ -43,7 +52,8 @@ export const Button: FC<IButton> = ({
           onFavouriteClick();
         }}
       >
-        {isFavourite(item.phoneId) ? <SvgHeartRed /> : <SvgHeart /> }
+        {isFavourite(id)
+          ? <SvgHeartRed /> : <SvgHeart />}
       </button>
     </div>
   );

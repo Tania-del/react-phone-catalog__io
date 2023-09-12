@@ -26,7 +26,6 @@ export const CartProvider = ({ children }: ICartProvider) => {
   ) ?? [];
 
   const [cartItems, setCartItems] = useState<string[]>(getCartItems());
-
   const isCartItem = (itemId: string) => {
     return cartItems?.includes(itemId);
   };

@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ProductCard } from '../type/ProductCard';
 import '../styles/PhoneDetails.scss';
-import SvgHeart from '../icons/Heart';
+// import SvgHeart from '../icons/Heart';
 import { MobileList } from './MobileList';
 import products from '../products.json';
 import { Footer } from './Footer';
@@ -11,10 +11,16 @@ import { Breadcrumbs } from './Breadcrumbs';
 import SvgHome from '../icons/Home';
 import SvgArrowRight from '../icons/ArrowRight';
 import SvgArrowLeft from '../icons/ArrowLeft';
+import { AddButtons } from './AddButtons';
+import { FavouriteContext } from '../context/FavouriteContext';
+import { LOCALSTORAGE_KEYS } from '../constants/comman';
+import { CartContext } from '../context/CartContext';
 
 export const PhoneDetails = () => {
   const [productCard, setProductCard] = useState<ProductCard | null>(null);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
+  const { addToFavourite } = useContext(FavouriteContext);
+  const { addToCart } = useContext(CartContext);
 
   const { phoneId } = useParams();
   const navigate = useNavigate();
@@ -151,15 +157,21 @@ export const PhoneDetails = () => {
                 <p className="card-price">{`$${productCard?.priceDiscount}`}</p>
                 <p className="card-full__price">{`$${productCard?.priceRegular}`}</p>
               </div>
-              <div className="buttons-wrapper card-buttons__wrapper">
-                <button type="button" className="button card-button">
-                  <h2 className="button-title">Add to card</h2>
-                </button>
-                <button type="button" className="button-favourites">
-                  <SvgHeart />
-                </button>
-              </div>
-
+              {productCard && (
+                <AddButtons
+                  id={productCard.id}
+                  customStyle="card-button"
+                  onAddToCartClick={() => addToCart(productCard?.id ?? '')}
+                  onFavouriteClick={() => {
+                    if (productCard) {
+                      addToFavourite(
+                        LOCALSTORAGE_KEYS.phoneId,
+                        productCard?.id ?? '',
+                      );
+                    }
+                  }}
+                />
+              )}
               <div className="card-description">
                 <div>
                   <p className="description-title">Screen</p>

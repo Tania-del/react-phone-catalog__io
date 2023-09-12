@@ -1,8 +1,8 @@
 import { createContext, ReactNode, useState } from 'react';
 
 interface IErrorMessageContext {
-  inputErrorMessage: string;
-  setInputErrorMessage: React.Dispatch<React.SetStateAction<string>>;
+  errorMessage: string;
+  setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface IErrorMessageProvider {
@@ -10,16 +10,16 @@ interface IErrorMessageProvider {
 }
 
 export const ErrorMessageContext = createContext<IErrorMessageContext>({
-  inputErrorMessage: '',
-  setInputErrorMessage: () => {},
+  errorMessage: '',
+  setErrorMessage: () => {},
 });
 
 export const ErrorMessageProvider = ({ children }: IErrorMessageProvider) => {
-  const [inputErrorMessage, setInputErrorMessage] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   return (
     <ErrorMessageContext.Provider
-      value={{ inputErrorMessage, setInputErrorMessage }}
+      value={{ errorMessage, setErrorMessage }}
     >
       {children}
     </ErrorMessageContext.Provider>

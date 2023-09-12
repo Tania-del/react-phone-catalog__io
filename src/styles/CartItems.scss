@@ -2,14 +2,17 @@
 @import "fonts";
 
 .cart-container {
-padding: 24px 0 87px;
-display: flex;
-gap: 16px;
+  padding: 24px 0 87px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
 }
 
 .item-wrapper {
-  width: 752px;
-  height: 128px;
+  // width: 752px;
+  // height: 128px;
+  width: auto;
+  height: auto;
   border: 1px solid $elements-color;
   display: flex;
   align-items: center;
@@ -28,13 +31,13 @@ gap: 16px;
 }
 
 .cart-name {
-margin: 0;
-width: 295px;
-height: 42px;
-padding-top: 5px;
+  margin: 0;
+  width: 295px;
+  height: 42px;
+  padding-top: 5px;
 }
 
-.cart-btn__wrapper{
+.cart-btn__wrapper {
   display: flex;
   gap: 13px;
   align-items: center;
@@ -58,25 +61,71 @@ padding-top: 5px;
 }
 
 .close-btn {
-background: none;
-border: none;
+  background: none;
+  border: none;
 
-& svg {
-fill: $gray-icons;
-}
+  & svg {
+    fill: $gray-icons;
+  }
 }
 
 .total-container {
   width: 368px;
   height: 206px;
   border: 1px solid $elements-color;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.price{
+.price {
   font-family: "Mont", sans-serif;
   font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.32px;
+}
+
+.price-text {
+  font-family: "Mont", sans-serif;
+font-size: 14px;
 font-style: normal;
-font-weight: 700;
-line-height: normal;
-letter-spacing: -0.32px;
+font-weight: 500;
+line-height: 21px;
+color: $gray-secondary;
+padding-bottom: 24px;
+}
+.checkout-btn {
+margin-top: 24px;
+padding: 14px 126px 13px 125px;
+width: 320px;
+background-color: $primary-color;
+border: none;
+}
+
+
+@media screen and(max-width: 768px) {
+  .cart-container {
+    flex-direction: column;
+    align-items: center;
+  }
+ .item-wrapper {
+   flex-direction: column;
+   padding-bottom: 13px;
+
+ }
+ .cart-name {
+   width: 200px;
+ }
+ .cart-btn__wrapper {
+   margin-bottom: 13px;
+ }
+}
+@media screen and (max-width: 1199px) {
+  .cart-container {
+    flex-direction: column;
+    align-items: center;
+  }
 }

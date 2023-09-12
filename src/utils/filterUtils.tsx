@@ -9,7 +9,7 @@ export const getQuery = () => {
 export const filterByQuery = (
   products: Product[],
   query?: string,
-  setInputErrorMessage?: (message: string) => void,
+  setErrorMessage?: (message: string) => void,
 ): Product[] => {
   const input = typeof query === 'string' ? query : getQuery() ?? '';
 
@@ -18,9 +18,9 @@ export const filterByQuery = (
   );
 
   if (!filteredProductsByQuery.length) {
-    setInputErrorMessage?.('No model was found for the specified parameters');
+    setErrorMessage?.('No model was found for the specified parameters');
   } else {
-    setInputErrorMessage?.('');
+    setErrorMessage?.('');
   }
 
   return filteredProductsByQuery;

@@ -14,10 +14,10 @@ import { CartProvider } from './context/CartContext';
 export const App = () => {
   return (
     <div className="App">
-      <FavouriteProvider>
-        <CartProvider>
-          <SearchContextProvider>
-            <ErrorMessageProvider>
+      <ErrorMessageProvider>
+        <FavouriteProvider>
+          <CartProvider>
+            <SearchContextProvider>
               <Header />
               <Routes>
                 <Route path="/" element={<HomePage />} />
@@ -26,10 +26,10 @@ export const App = () => {
                 <Route path="/favourites" element={<FavouritesPage />} />
                 <Route path="/cart" element={<CartPage />} />
               </Routes>
-            </ErrorMessageProvider>
-          </SearchContextProvider>
-        </CartProvider>
-      </FavouriteProvider>
+            </SearchContextProvider>
+          </CartProvider>
+        </FavouriteProvider>
+      </ErrorMessageProvider>
     </div>
   );
 };

@@ -4,7 +4,7 @@ import { CartContext } from '../context/CartContext';
 import { FavouriteContext } from '../context/FavouriteContext';
 import '../styles/MobileCard.scss';
 import { Product } from '../type/Product';
-import { Button } from './Button';
+import { AddButtons } from './AddButtons';
 
 interface IMobileCard {
   item: Product;
@@ -24,7 +24,7 @@ export const MobileCard: FC<IMobileCard> = ({ item, onClick }) => {
     <>
       <div
         className="card mobile-card"
-        onClick={() => onClick?.()}
+        onClick={onClick}
         role="button"
         onKeyDown={(event) => {
           if (event.key === 'Enter') {
@@ -60,8 +60,8 @@ export const MobileCard: FC<IMobileCard> = ({ item, onClick }) => {
                 <p className="description-text">{ram}</p>
               </div>
             </div>
-            <Button
-              item={item}
+            <AddButtons
+              id={item.phoneId}
               // eslint-disable-next-line max-len
               onAddToCartClick={() => addToCart(item.phoneId)}
               // eslint-disable-next-line max-len

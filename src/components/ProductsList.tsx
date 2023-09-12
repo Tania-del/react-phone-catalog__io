@@ -32,10 +32,8 @@ export const ProductsList: FC<IProductsList> = ({
   const { inputValue } = useContext(SearchContext);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [selectedPhone] = useState<Product | null>(null);
-  const { inputErrorMessage } = useContext(ErrorMessageContext);
-
   const { handleCardClick } = useCardClick();
-  const { setInputErrorMessage } = useContext(ErrorMessageContext);
+  const { errorMessage, setErrorMessage } = useContext(ErrorMessageContext);
 
   const options1: Option[] = [
     { value: 'Newest', label: 'Newest' },
@@ -184,7 +182,7 @@ export const ProductsList: FC<IProductsList> = ({
   };
 
   useEffect(() => {
-    const filteredByQuery = filterByQuery(allwaysFullProducts, inputValue, setInputErrorMessage);
+    const filteredByQuery = filterByQuery(allwaysFullProducts, inputValue, setErrorMessage);
     const sortedByQuery = sortByQuery(filteredByQuery);
     const slicedByLimit = limitByQuery(sortedByQuery);
 
@@ -242,7 +240,7 @@ export const ProductsList: FC<IProductsList> = ({
           </div>
 
           <div className="products-wrapper">
-            {inputErrorMessage && <p>{inputErrorMessage}</p>}
+            {errorMessage && <p>{errorMessage}</p>}
             <section className="products">
               <ul className="products-list">
                 {productsToRender?.map((product) => (
@@ -255,7 +253,7 @@ export const ProductsList: FC<IProductsList> = ({
               </ul>
             </section>
           </div>
-          {!inputErrorMessage && (
+          {!errorMessage && (
             <Pagination
               onPageChange={onPageChange}
               total={pages}

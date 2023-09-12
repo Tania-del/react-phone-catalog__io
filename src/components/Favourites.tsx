@@ -13,14 +13,18 @@ export const Favourites = () => {
   const { favourites } = useContext(FavouriteContext);
   const { handleCardClick } = useCardClick();
   const { inputValue } = useContext(SearchContext);
-  const { inputErrorMessage, setInputErrorMessage }
+  const { errorMessage, setErrorMessage }
     = useContext(ErrorMessageContext);
 
   const filteredByFavourites = products.filter(
     (product) => favourites.includes(product.phoneId),
   );
 
-  filterByQuery(filteredByFavourites, inputValue, setInputErrorMessage);
+  filterByQuery(filteredByFavourites, inputValue, setErrorMessage);
+
+  if (!favourites.length) {
+    setErrorMessage('There are no selected products yet');
+  }
 
   return (
     <>
@@ -29,19 +33,22 @@ export const Favourites = () => {
         {`${favourites.length} items`}
       </p>
       <div className="favourites-wrapper">
-        {inputErrorMessage && <p>{inputErrorMessage}</p>}
+        {errorMessage && <p>{errorMessage}</p>}
         <div className="products-wrapper">
-          <section className="products">
-            <ul className="products-list">
-              {filteredByFavourites?.map((product: Product) => (
-                <MobileCard
-                  item={product}
-                  key={product.id}
-                  onClick={() => handleCardClick(product.phoneId)}
-                />
-              ))}
-            </ul>
-          </section>
+          {!errorMessage
+          && (
+            <section className="products">
+              <ul className="products-list">
+                {filteredByFavourites?.map((product: Product) => (
+                  <MobileCard
+                    item={product}
+                    key={product.id}
+                    onClick={() => handleCardClick(product.phoneId)}
+                  />
+                ))}
+              </ul>
+            </section>
+          )}
         </div>
       </div>
     </>

@@ -95,7 +95,7 @@
 
 .input-wrapper {
   position: relative;
-  width: 326px;
+  width: 160px;
   height: 64px;
   display: flex;
   align-items: center;
@@ -150,4 +150,17 @@
   font-style: normal;
   top: 25%;
   right: 25%;
+}
+
+@media screen and  (max-width: 768px) {
+  .nav {
+    display: none;
+  }
+
+}
+
+@media screen and (min-width: 525px) {
+  .input-wrapper {
+     width: 326px;
+  }
 }
