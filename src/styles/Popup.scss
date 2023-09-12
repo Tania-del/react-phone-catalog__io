@@ -1,4 +1,4 @@
-@import 'colors';
+@import "colors";
 
 .popup-container {
   position: fixed;
@@ -12,24 +12,43 @@
 }
 
 .popup-body {
-position: absolute;
-left: 30%;
-right: 30%;
-bottom: 45%;
-top: 40%;
-text-align: center;
-margin: auto;
-border-radius: 15px;
-border-color: $primary-color;
-background: white;
-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-padding: 40px;
+  position: absolute;
+  left: 30%;
+  right: 30%;
+  bottom: 45%;
+  top: 40%;
+  text-align: center;
+  margin: auto;
+  border-radius: 15px;
+  border-color: $primary-color;
+  background: white;
+  box-shadow: rgba(0, 0, 0, 0.35);
+  padding: 40px;
 }
 
 .close-svg {
   width: 35px;
   height: 35px;
   position: absolute;
-top: 10%;
-right: 3%;
+  top: 10%;
+  right: 3%;
+}
+
+@media (max-width: 767px) {
+  .popup-body {
+    width: 90%;
+    left: 5%;
+    top: 10%;
+    bottom: auto;
+    right: auto;
+  }
+}
+@media (min-width: 768px) {
+  .popup-body {
+    width: 50%;
+    left: 25%;
+    top: 20%;
+    bottom: auto;
+    right: auto; 
+  }
 }

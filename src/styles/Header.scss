@@ -152,15 +152,14 @@
   right: 25%;
 }
 
-@media screen and  (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .nav {
     display: none;
   }
-
 }
 
 @media screen and (min-width: 525px) {
   .input-wrapper {
-     width: 326px;
+    width: 326px;
   }
 }
