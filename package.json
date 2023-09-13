@@ -1,6 +1,6 @@
 {
+  "homepage": "https://<Tania-del>.github.io/react-phone-catalog",
   "name": "react_phone-catalog",
-  "homepage": ".",
   "version": "0.1.0",
   "keywords": [],
   "author": "Mate Academy",
@@ -51,7 +51,7 @@
     "update": "mate-scripts update",
     "postinstall": "npm run update && cypress verify",
     "predeploy": "npm run build",
-    "deploy": "mate-scripts deploy",
+    "deploy": "gh-pages -d build",
     "transform-svg": "svgr --config-file svgr.config.js --out-dir ./src/icons --ignore-existing ./public/iconsSvg"
   },
   "browserslist": {
