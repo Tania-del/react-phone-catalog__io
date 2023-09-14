@@ -105,7 +105,7 @@ export const PhoneDetails = () => {
                 onClick={() => setSelectedImageIndex(index)}
               >
                 <img
-                  src={`/${imageUrl}`}
+                  src={`/react-phone-catalog__io/${imageUrl}`}
                   alt={productCard?.name}
                   className="card-small__img"
                 />
@@ -116,7 +116,7 @@ export const PhoneDetails = () => {
             <div className="selected-img__container">
               {selectedImageIndex !== null && (
                 <img
-                  src={`/${productCard?.images?.[selectedImageIndex]}`}
+                  src={`/react-phone-catalog__io/${productCard?.images?.[selectedImageIndex]}`}
                   alt=""
                   className="selected-image"
                 />

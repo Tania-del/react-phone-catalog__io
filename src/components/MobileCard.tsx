@@ -34,7 +34,7 @@ export const MobileCard: FC<IMobileCard> = ({ item, onClick }) => {
         tabIndex={0}
       >
         <li>
-          <img className="card-img" src={`/${image}`} alt="img" />
+          <img className="card-img" src={`/react-phone-catalog__io/${image}`} alt="img" />
           <div className="card-container">
             <div>
               <h3 className="card-title">{name}</h3>

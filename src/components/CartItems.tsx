@@ -111,7 +111,7 @@ export const CartItems = () => {
                       </button>
                       <div className="cart-img__wrapper">
                         <img
-                          src={item.image}
+                          src={`/react-phone-catalog__io/${item.image}`}
                           alt="Phone"
                           className="cart-img"
                         />
