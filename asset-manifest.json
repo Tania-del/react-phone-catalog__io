@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/static/css/main.13f99ffe.chunk.css",
-    "main.js": "/static/js/main.48e4ecba.chunk.js",
-    "main.js.map": "/static/js/main.48e4ecba.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.d2e69211.js",
-    "runtime-main.js.map": "/static/js/runtime-main.d2e69211.js.map",
-    "static/js/2.670af5cd.chunk.js": "/static/js/2.670af5cd.chunk.js",
-    "static/js/2.670af5cd.chunk.js.map": "/static/js/2.670af5cd.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/main.13f99ffe.chunk.css.map": "/static/css/main.13f99ffe.chunk.css.map",
-    "static/js/2.670af5cd.chunk.js.LICENSE.txt": "/static/js/2.670af5cd.chunk.js.LICENSE.txt",
-    "static/media/Accessories.b914f412.png": "/static/media/Accessories.b914f412.png",
-    "static/media/CartItems.scss": "/static/media/Mont-SemiBold.8979d71a.otf",
-    "static/media/Phones.e2f75164.png": "/static/media/Phones.e2f75164.png",
-    "static/media/Tablets.c198526a.png": "/static/media/Tablets.c198526a.png",
-    "static/media/banner-accessories.bdd2e0fc.png": "/static/media/banner-accessories.bdd2e0fc.png",
-    "static/media/banner-phones.b4eeda8b.png": "/static/media/banner-phones.b4eeda8b.png",
-    "static/media/banner-tablets.a962057c.png": "/static/media/banner-tablets.a962057c.png"
+    "main.css": "/react-phone-catalog__io/static/css/main.16185fb7.chunk.css",
+    "main.js": "/react-phone-catalog__io/static/js/main.48e4ecba.chunk.js",
+    "main.js.map": "/react-phone-catalog__io/static/js/main.48e4ecba.chunk.js.map",
+    "runtime-main.js": "/react-phone-catalog__io/static/js/runtime-main.88746247.js",
+    "runtime-main.js.map": "/react-phone-catalog__io/static/js/runtime-main.88746247.js.map",
+    "static/js/2.670af5cd.chunk.js": "/react-phone-catalog__io/static/js/2.670af5cd.chunk.js",
+    "static/js/2.670af5cd.chunk.js.map": "/react-phone-catalog__io/static/js/2.670af5cd.chunk.js.map",
+    "index.html": "/react-phone-catalog__io/index.html",
+    "static/css/main.16185fb7.chunk.css.map": "/react-phone-catalog__io/static/css/main.16185fb7.chunk.css.map",
+    "static/js/2.670af5cd.chunk.js.LICENSE.txt": "/react-phone-catalog__io/static/js/2.670af5cd.chunk.js.LICENSE.txt",
+    "static/media/Accessories.b914f412.png": "/react-phone-catalog__io/static/media/Accessories.b914f412.png",
+    "static/media/CartItems.scss": "/react-phone-catalog__io/static/media/Mont-SemiBold.8979d71a.otf",
+    "static/media/Phones.e2f75164.png": "/react-phone-catalog__io/static/media/Phones.e2f75164.png",
+    "static/media/Tablets.c198526a.png": "/react-phone-catalog__io/static/media/Tablets.c198526a.png",
+    "static/media/banner-accessories.bdd2e0fc.png": "/react-phone-catalog__io/static/media/banner-accessories.bdd2e0fc.png",
+    "static/media/banner-phones.b4eeda8b.png": "/react-phone-catalog__io/static/media/banner-phones.b4eeda8b.png",
+    "static/media/banner-tablets.a962057c.png": "/react-phone-catalog__io/static/media/banner-tablets.a962057c.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.d2e69211.js",
+    "static/js/runtime-main.88746247.js",
     "static/js/2.670af5cd.chunk.js",
-    "static/css/main.13f99ffe.chunk.css",
+    "static/css/main.16185fb7.chunk.css",
     "static/js/main.48e4ecba.chunk.js"
   ]
 }
