@@ -1,4 +1,5 @@
 {
+  "homepage": "https://tania-del.github.io/react-phone-catalog__io",
   "name": "react_phone-catalog",
   "version": "0.1.0",
   "keywords": [],
@@ -42,15 +43,15 @@
   },
   "scripts": {
     "start": "mate-scripts start",
-    "build": "mate-scripts build",
+    "build": "react-scripts build",
     "test": "mate-scripts test",
+    "predeploy": "npm run build",
     "lint-js": "mate-scripts lint -j",
     "lint-css": "mate-scripts lint -s",
     "lint": "npm run lint-js && npm run lint-css",
     "update": "mate-scripts update",
     "postinstall": "npm run update && cypress verify",
-    "predeploy": "npm run build",
-    "deploy": "mate-scripts deploy",
+    "deploy": "gh-pages -d build",
     "transform-svg": "svgr --config-file svgr.config.js --out-dir ./src/icons --ignore-existing ./public/iconsSvg"
   },
   "browserslist": {
