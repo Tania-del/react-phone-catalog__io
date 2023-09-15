@@ -35,7 +35,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: 140%;
-    padding-right: 40px;
+ 
 
     &__wrapper {
       display: flex;
@@ -63,6 +63,7 @@
 
 .underline {
   height: 1px;
+  // width: 224px;
   width: 100%;
   border-bottom: 1px solid $elements-color;
   padding-top: 8px;
@@ -97,3 +98,4 @@
 .description-text:last-child {
   padding-bottom: 0;
 }
+
