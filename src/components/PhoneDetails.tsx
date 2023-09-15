@@ -43,7 +43,7 @@ export const PhoneDetails = () => {
   const handleColors = async (color: string) => {
     const newUrlChunk = phoneId?.replace(productCard?.color ?? '', color);
 
-    navigate(`#/phones/${newUrlChunk}`);
+    navigate(`/phones/${newUrlChunk}`);
   };
 
   const handleCapacity = async (capacity: string) => {
@@ -54,7 +54,7 @@ export const PhoneDetails = () => {
 
     const newUrlChunk = phoneId?.replace(oldCapacity ?? '', newCapacity);
 
-    navigate(`#/phones/${newUrlChunk}`);
+    navigate(`/phones/${newUrlChunk}`);
   };
 
   return (
