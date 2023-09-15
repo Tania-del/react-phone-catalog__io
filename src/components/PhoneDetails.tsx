@@ -37,7 +37,7 @@ export const PhoneDetails = () => {
   };
 
   useEffect(() => {
-    fetchPhoneData(`#/products/${phoneId}.json`);
+    fetchPhoneData(`/react-phone-catalog__io/products/${phoneId}.json`);
   }, [phoneId]);
 
   const handleColors = async (color: string) => {
