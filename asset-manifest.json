@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/react-phone-catalog__io/static/css/main.dad4b122.chunk.css",
-    "main.js": "/react-phone-catalog__io/static/js/main.528c7ca5.chunk.js",
-    "main.js.map": "/react-phone-catalog__io/static/js/main.528c7ca5.chunk.js.map",
+    "main.css": "/react-phone-catalog__io/static/css/main.a294e738.chunk.css",
+    "main.js": "/react-phone-catalog__io/static/js/main.a77066b5.chunk.js",
+    "main.js.map": "/react-phone-catalog__io/static/js/main.a77066b5.chunk.js.map",
     "runtime-main.js": "/react-phone-catalog__io/static/js/runtime-main.88746247.js",
     "runtime-main.js.map": "/react-phone-catalog__io/static/js/runtime-main.88746247.js.map",
-    "static/js/2.7c7b4253.chunk.js": "/react-phone-catalog__io/static/js/2.7c7b4253.chunk.js",
-    "static/js/2.7c7b4253.chunk.js.map": "/react-phone-catalog__io/static/js/2.7c7b4253.chunk.js.map",
+    "static/js/2.c990947c.chunk.js": "/react-phone-catalog__io/static/js/2.c990947c.chunk.js",
+    "static/js/2.c990947c.chunk.js.map": "/react-phone-catalog__io/static/js/2.c990947c.chunk.js.map",
     "index.html": "/react-phone-catalog__io/index.html",
-    "static/css/main.dad4b122.chunk.css.map": "/react-phone-catalog__io/static/css/main.dad4b122.chunk.css.map",
-    "static/js/2.7c7b4253.chunk.js.LICENSE.txt": "/react-phone-catalog__io/static/js/2.7c7b4253.chunk.js.LICENSE.txt",
+    "static/css/main.a294e738.chunk.css.map": "/react-phone-catalog__io/static/css/main.a294e738.chunk.css.map",
+    "static/js/2.c990947c.chunk.js.LICENSE.txt": "/react-phone-catalog__io/static/js/2.c990947c.chunk.js.LICENSE.txt",
     "static/media/Accessories.b914f412.png": "/react-phone-catalog__io/static/media/Accessories.b914f412.png",
     "static/media/CartItems.scss": "/react-phone-catalog__io/static/media/Mont-SemiBold.8979d71a.otf",
     "static/media/Phones.e2f75164.png": "/react-phone-catalog__io/static/media/Phones.e2f75164.png",
@@ -20,8 +20,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.88746247.js",
-    "static/js/2.7c7b4253.chunk.js",
-    "static/css/main.dad4b122.chunk.css",
-    "static/js/main.528c7ca5.chunk.js"
+    "static/js/2.c990947c.chunk.js",
+    "static/css/main.a294e738.chunk.css",
+    "static/js/main.a77066b5.chunk.js"
   ]
 }
