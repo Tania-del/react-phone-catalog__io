@@ -19,7 +19,7 @@ export const CartPage = () => {
                   <p>Back</p>
                 </div>
               ),
-              href: '/phones',
+              href: '#/phones',
             },
           ]}
         />

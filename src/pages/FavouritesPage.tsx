@@ -14,11 +14,11 @@ export const FavouritesPage = () => {
           breadcrumbs={[
             {
               title: <SvgHome className="breadcrumbs-home" />,
-              href: '/',
+              href: '#/',
             },
             {
               title: 'Favourites',
-              href: '/favourites',
+              href: '#/favourites',
             },
           ]}
         />

@@ -16,11 +16,11 @@ export const PhonesPage = () => {
             [
               {
                 title: <SvgHome className="breadcrumbs-home" />,
-                href: '/',
+                href: '#/',
               },
               {
                 title: 'Phones',
-                href: '/phones',
+                href: '#/phones',
               },
             ]
           }

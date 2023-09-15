@@ -31,18 +31,6 @@ export const Breadcrumbs: FC<IBreadcrumbs> = ({
             {index !== breadcrumbs.length - 1 && delimiter}
           </Fragment>
         ))}
-
-        {/* <Link to="/" className={pathname === '/' ? 'breadcrumb-active' : 'breadcrumb-not-active'}>
-        <SvgHome className="breadcrumbs-home" />
-      </Link>
-      <span><SvgArrowRight className="breadcrumbs-arrow__right" /></span>
-      <Link to="/phones" className={pathname.startsWith('/phones') ? 'breadcrumb-active' : 'breadcrumb-not-active'}>
-        Phones
-      </Link>
-      <span><SvgArrowRight className="breadcrumbs-arrow__right" /></span>
-      <Link to="/phonesId">
-        {}
-      </Link> */}
       </nav>
     </div>
   );

@@ -37,13 +37,13 @@ export const PhoneDetails = () => {
   };
 
   useEffect(() => {
-    fetchPhoneData(`/products/${phoneId}.json`);
+    fetchPhoneData(`#/products/${phoneId}.json`);
   }, [phoneId]);
 
   const handleColors = async (color: string) => {
     const newUrlChunk = phoneId?.replace(productCard?.color ?? '', color);
 
-    navigate(`/phones/${newUrlChunk}`);
+    navigate(`#/phones/${newUrlChunk}`);
   };
 
   const handleCapacity = async (capacity: string) => {
@@ -54,7 +54,7 @@ export const PhoneDetails = () => {
 
     const newUrlChunk = phoneId?.replace(oldCapacity ?? '', newCapacity);
 
-    navigate(`/phones/${newUrlChunk}`);
+    navigate(`#/phones/${newUrlChunk}`);
   };
 
   return (
@@ -66,15 +66,15 @@ export const PhoneDetails = () => {
           breadcrumbs={[
             {
               title: <SvgHome className="breadcrumbs-home" />,
-              href: '/',
+              href: '#/',
             },
             {
               title: 'Phones',
-              href: '/phones',
+              href: '#/phones',
             },
             {
               title: productCard?.name,
-              href: `/phones/${productCard?.id}`,
+              href: `#/phones/${productCard?.id}`,
             },
           ]}
         />
@@ -89,7 +89,7 @@ export const PhoneDetails = () => {
                   <p>Back</p>
                 </div>
               ),
-              href: '/phones',
+              href: '#/phones',
             },
           ]}
         />
